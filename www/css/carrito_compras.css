@@ -1,0 +1,85 @@
+#select-categoria {
+	text-align: center;
+	width: 250px;
+	margin: 0 auto;
+}
+
+#catalogo table tbody td input {
+	text-align: center;
+}
+
+#catalogo table{
+    width: 100%;
+    height: 100%;
+    border-collapse: separate;
+    border-spacing: 5px;
+    text-align: center;
+}
+#detalles table{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 0px;
+}
+#detalles td {
+    border: 1px solid gray;
+}
+
+#catalogo table th{
+    padding: 1.5%;
+
+    box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+}
+
+#catalogo table tbody tr td{
+    padding: 1.5%;
+
+    box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+    -webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
+}
+
+#catalogo table thead tr{
+    border-radius: 10px;
+}
+
+#catalogo table tbody tr:nth-of-type(odd){
+    background-color: #DDF0F4;
+}
+
+#catalogo table tbody tr:nth-of-type(even){
+    background-color: #ffffff;
+}
+
+@media (max-width: 800px) {
+    #catalogo table, #catalogo thead, #catalogo tr, #catalogo th, #catalogo tbody, #catalogo td {
+        display: block;
+    }
+    #catalogo table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    #catalogo table tbody tr td {
+        position: relative;
+        padding-left: 50%;
+        text-align:right;
+    }
+    #catalogo table tbody tr td:before {
+        text-align: left;
+        font-weight: bold;
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+    #catalogo table tbody tr td:nth-of-type(1):before {content: "Código";}
+    #catalogo table tbody tr td:nth-of-type(2):before {content: "Descripción";}
+    #catalogo table tbody tr td:nth-of-type(3):before {content: "Precio";}
+    #catalogo table tbody tr td:nth-of-type(4):before {content: "Puntos";}
+    #catalogo table tbody tr td:nth-of-type(5):before {content: "Valor Consumible";}
+    #catalogo table tbody tr td:nth-of-type(6):before {content: "Peso";}
+    #catalogo table tbody tr td:nth-of-type(7):before {content: "Comprar";}
+}

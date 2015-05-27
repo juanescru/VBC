@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=no">
+
+
+        <link rel="stylesheet" href="css/themes/vbc-theme.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
+        <link rel="stylesheet" type="text/css" href="fonts/fonts.css">     
+        <link rel="stylesheet" type="text/css" href="css/visor_volumen_detalles.css"> 
+
+        <link href="css/visor_volumen_graphite.css" rel="stylesheet" type="text/css" />
+
+        <title>Detalles</title>
+    </head>
+    <body>
+        <div data-role="page" data-theme="a">
+
+            <div data-role="header" data-theme="a">
+                <h1>Visor de detalles</h1>
+                <div class="menu_bar">
+                    <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
+                </div>
+            </div>
+
+            <div data-role="content">
+
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+                <h3>Abelardo<h3><div style="float: right; margin-bottom: 10px"><a data-mini="true" data-inline="true" data-role="button" href="#" onClick="javascript:history.back()">Regresar</a></div>
+                <table>
+                    <thead>
+                        <tr class="ui-bar-a">
+                            <th>P. Directos</th>
+                            <th>Inscripción</th>
+                            <th>Volumen Personal</th>
+                            <th>Acreditable</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>5</td>
+                            <td>2010-09-10 00:00:00</td>
+                            <td>1,494.00</td>
+                            <td>1,659.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+
+            </div>
+        </div>
+
+    <div id="deviceready" style="display: none">
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Device is Ready</p>
+    </div>
+    
+    <!-- ********  MENÚ  ******** -->
+    <header>
+        <nav id="menu"></nav>
+    </header>
+    <section id="mascara"></section>
+    
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/classMenu.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+
+    <script type="text/javascript" src="js/visor_volumen_jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/visor_volumen_jquery.dcdrilldown.1.2.js"></script>
+
+    <script type="text/javascript"> 
+            //El registro al servicio de google lo hacemos automáticamente
+            app.initialize();            
+            menu.cargarMenu();
+    </script>
+    </body>
+</html>

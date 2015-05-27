@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=no">
+
+        <link rel="stylesheet" href="css/themes/vbc-theme.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/styleSuscriptores.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
+        <link rel="stylesheet" type="text/css" href="fonts/fonts.css">               
+
+        <title>Inscripciones</title>
+
+    </head>
+    <body>
+
+        <!-- Inicia Página -->
+        <div data-role="page" data-theme="a" id="inscripciones">
+
+        <!-- Encabezado de la página -->
+        <div data-role="header" data-theme="a">
+            <h1>Inscripción RIR</h1>
+            <div class="menu_bar">
+                <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
+            </div>
+        </div>
+
+        <!-- Contenido de la página-->
+        <div data-role="content" id="contenedor">
+
+            <div id="bienvenida">
+                <h3>Felicitaciones</h3>
+                <p>Usted ha elegido los suplementos naturales más finos del mercado, disponibles sólo en la línea REDNATURA. Por favor lea la siguiente información.</p>
+            </div>
+            
+            <div id="clear">
+                
+                <form action="#" id="inscripcion1" name="inscripcion1">
+                    <table>
+                         <tbody>
+                           <tr>
+                             <th>Lenguaje:</th>
+                             <td><select name="tipo" id="tipo"><option value="1">Español</option></td>
+                           </tr>
+                           <tr>
+                             <th>Número y Nombre de Patrocinador:</th>
+                             <td><label>12</label><label>Martín, Sánchez Salazar</label></td>                                                    
+                           </tr>
+                            <tr>
+                                <td colspan="2"><p>De click al vinculo siguiente para bajar un archivo pdf del <a href="#dialogo" data-rel="dialog">CONTRATO DEL RIR</a></p></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><input data-role="none" type="checkbox" name="cbAcepto" id="cbAcepto" value="cbAcepto"><p>He leído y acepto los términos arriba descritos</p><br></td><br>
+                            </tr>
+                           <tr>
+                             <td colspan="2">
+                                 <p>Sí, me gustaría ser un</p>
+                                 <div id="siguiente">
+                                    <input type="button" onclick="validarCB();" name="btnContinuar" id="btnContinuar" value="RIR de REDNATURA">
+                                 </div>
+                             </td>
+                           </tr>
+                         </tbody>
+                   </table>
+                </form>
+        
+            </div>
+
+        </div>
+
+        <div id="deviceready" style="display: none">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+
+    </div>
+    
+   <!-- ********  MENÚ  ******** -->
+    <header>
+        <nav id="menu"></nav>
+    </header>
+    <section id="mascara"></section>
+    
+    
+    </div>
+
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/classMenu.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+    <script type="text/javascript"> 
+            //El registro al servicio de google lo hacemos automáticamente
+            app.initialize();            
+            menu.cargarMenu();
+        
+    </script>
+    </body>
+</html>
