@@ -35,40 +35,111 @@
         <div data-role="content" id="contenedor">
 
             <div id="bienvenida">
-                <h3>Felicitaciones</h3>
-                <p>Usted ha elegido los suplementos naturales más finos del mercado, disponibles sólo en la línea REDNATURA. Por favor lea la siguiente información.</p>
+                <p>Por favor complete la siguiente información(todos los campos son obligatorios).</p>
             </div>
             
             <div id="clear">
                 
-                <form action="#" id="inscripcion1" name="inscripcion1">
+                <form action="#" id="inscripcion" name="inscripcion">
                     <table>
                          <tbody>
                            <tr>
-                             <th>Lenguaje:</th>
-                             <td><select name="tipo" id="tipo"><option value="1">Español</option></td>
+                             <th>RFC:</th>
+                             <td><input data-mini="true" type="text" name="txtRFC" id="txtRFC"></td>
                            </tr>
                            <tr>
-                             <th>Número y Nombre de Patrocinador:</th>
-                             <td><label>12</label><label>Martín, Sánchez Salazar</label></td>                                                    
+                             <th>CURP:</th>
+                             <td><input data-mini="true" type="text" name="txtCURP" id="txtCURP"></td>                                                   
                            </tr>
                             <tr>
-                                <td colspan="2"><p>De click al vinculo siguiente para bajar un archivo pdf del <a href="#dialogo" data-rel="dialog">CONTRATO DEL RIR</a></p></td>
+                                <th>Nombre(s) Apellido(s):</th>
+                                <td>
+                                    <input data-mini="true" type="text" name="txtNombre" id="txtNombre" placeholder="Nombre(s)">
+                                    <input data-mini="true" type="text" name="txtApePat" id="txtApePat" placeholder="Apellido Materno">
+                                    <input data-mini="true" type="text" name="txtApeMat" id="txtApeMat" placeholder="Apellido Paterno">
+                                </td>    
                             </tr>
                             <tr>
-                                <td colspan="2"></td>
+                                <th>Fecha de Nacimiento / Lugar de Nacimiento:</th>
+                                <td>
+                                    <select data-mini="true" data-inline="true" name="dia" id="dia">
+                                        <option>Día</option>
+                                    </select>
+                                    <select data-mini="true" data-inline="true" name="mes" id="mes">
+                                        <option>Mes</option>
+                                    </select>
+                                    <select data-mini="true" data-inline="true" name="año" id="año">
+                                        <option>Año</option>
+                                    </select>
+                                    <input data-mini="true" type="text" name="txtLugarNacimiento" id="txtLugarNacimiento" placeholder="Lugar de Nacimiento">
+                                </td>    
                             </tr>
                             <tr>
-                                <td colspan="2"><input data-role="none" type="checkbox" name="cbAcepto" id="cbAcepto" value="cbAcepto"><p>He leído y acepto los términos arriba descritos</p><br></td><br>
+                                <th>Sexo:</th>
+                                <td>
+                                    <select data-mini="true" name="sexo" id="sexo">
+                                        <option value="1">Masculino</option>
+                                        <option value="2">Femenino</option>
+                                    </select>
+                                </td>    
                             </tr>
                            <tr>
-                             <td colspan="2">
-                                 <p>Sí, me gustaría ser un</p>
-                                 <div id="siguiente">
-                                    <input type="button" onclick="validarCB();" name="btnContinuar" id="btnContinuar" value="RIR de REDNATURA">
-                                 </div>
-                             </td>
+                                <th>Teléfono:</th>
+                                <td><input data-mini="true" type="number" name="txtTelefono" id="txtTelefono"></td>    
                            </tr>
+                           <tr>
+                                <th>Correo Electrónico:</th>
+                                <td><input data-mini="true" type="email" name="txtEmail" id="txtEmail"></td>    
+                            </tr>
+                            <tr>
+                                <th>Confirmar Correo Electrónico:</th>
+                                <td><input data-mini="true" type="email" name="txtConfirmEmail" id="txtConfirmEmail"></td>    
+                            </tr>
+                            <tr style="background-color:#ffffff">
+                                <td colspan="3" style="height:2px;"></td>
+                            </tr>
+                            <tr>
+                                <th>Kit de Inscripción:</th>
+                                <td>
+                                    <select style="font-size:8px !important" data-mini="true" name="kit" id="kit">
+                                        <option value="1">PAQUETE DE INSCRIPCIÓN</option>                                        
+                                        <option value="2">PAQUETE DE INSCRIPCIÓN SERIALIZABLE</option>
+                                        <option value="3">PAQ. INVERSIÓN 1 - INVERSIÓN LIGERA</option>
+                                        <option value="4">PAQ. EMPRESARIAL 1 - INVERSIÓN LIGERA SERIALIZABLE</option>
+                                    </select>
+                                </td>    
+                            </tr>
+                            <tr>
+                                <th>Código de Autorización:</th>
+                                <td><input data-mini="true" type="number" name="txtCodigo" id="txtCodigo"></td>    
+                            </tr>
+                            <tr>
+                                <th>Método de envío:</th>
+                                <td>
+                                    <select data-mini="true" name="metodoEnvio" id="metodoEnvio">
+                                        <option>Selecciona uno</option>
+                                        <option value="1">Ocurre</option>
+                                        <option value="2">Mensajería</option>
+                                    </select>
+                                </td>    
+                            </tr>
+                            <tr>
+                                <th>Centro Autorizado:</th>
+                                <td>
+                                    <select data-inline="true" data-mini="true" name="centroAutorizado" id="centroAutorizado">
+                                        <option>Seleccione</option>
+                                    </select>
+                                    <a style="background:#6F93AB !important; color: rgba(255,255,255,.8)" data-role="button" data-inline="true" href="#direccion" data-rel="dialog">Dirección ></a>
+                                </td>    
+                            </tr>
+                            <tr>
+                                <th>Paqueterías:</th>
+                                <td></td>    
+                            </tr>
+                            <tr>
+                                <th>Método de Pago:</th>
+                                <td></td>    
+                            </tr>
                          </tbody>
                    </table>
                 </form>
