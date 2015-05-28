@@ -208,6 +208,37 @@ $(document).ready(function() {
     //
     //Termina Carrito de compras
 
+    //Inicia validación inscripciones
+    //
+
+    $('#kit').change(function() {
+        /* Act on the event */
+        var opcion = $(this).val();
+        if(opcion == 2 || opcion == 4 || opcion == 6 || opcion == 8 || opcion == 10){
+            $('#codigoAutorizacion').show(200);
+        }else{
+            $('#codigoAutorizacion').hide(200);
+        }
+    });
+
+    $('#metodoEnvio').change(function() {
+        /* Act on the event */
+        var opcion = $(this).val();
+        if(opcion == 1){
+            $('#paqueteriaTr').hide(200);
+            $('#centroAutorizadoTr').show(200);
+        }else if(opcion == 2){
+            $('#centroAutorizadoTr').hide(200);
+            $('#paqueteriaTr').show(200);
+        }else{
+            $('#centroAutorizadoTr').hide(200);
+            $('#paqueteriaTr').hide(200);
+        }
+    });
+
+    //
+    //Termina validación inscripciones
+
     //Menú
     //
     var contador = 1;
