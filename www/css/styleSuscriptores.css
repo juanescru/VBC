@@ -38,7 +38,6 @@ table th{
 
 table td{
 	padding: 0% 1.5%;
-
 	background-color: #f7f7f7;
 }
 
@@ -54,16 +53,24 @@ table tbody tr td:first-child{
 }
 
 label{
+	margin-right: 1px !important;
 	display: inline-block !important;
 	background-color: #8BB8D6;
 	color: #000000;
-	padding: 2%;
+	padding: .5%;
 	width: 50%;
+	border: 1px solid #6F93AB;
 	border-radius: 10px;
 }
 
 div#bienvenida{
 	text-align: justify;
+}
+
+div#bienvenida p{
+	color: #07075B;
+	font-size: .7em;
+	font-weight: bold;
 }
 
 div#contrato{
@@ -76,6 +83,14 @@ div#contrato{
 div#siguiente{
 	margin: auto;
 	max-width: 80%;
+}
+
+.ui-btn{
+	padding: 4px !important;
+}
+
+.ui-btn-icon-right{
+	padding-right: 2.5em !important;
 }
 
 @media (min-width: 640px) {
