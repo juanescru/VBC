@@ -68,11 +68,13 @@ $(document).ready(function() {
             //Se agrega "," para utilizarlo de escape al convertirlo en array
             cadena += "\"" + text + "\",";
             $.space.var1 += cadena;
+            if (text == "") {
+                $.space.var1 = "";
+            }
         });
         //se eliminan caracteres sobrantes para tener mayor control del arreglo
         var str = $.space.var1;
         str = str.substring(1, str.length-2);
-        str += "";
         //Se procede a guardar los datos en una variable local
         //para que esten disponibles cuando se acceda al carrito en cualquier momento
         //Dado que el carrito puede tener varias compras, se procede a utilizar un while
@@ -85,6 +87,9 @@ $(document).ready(function() {
                 //Ya que se guardaron los datos en el índice correspondiente
                 //se procede a salir del ciclo.
                 listo = 1;
+                if (str == "") {
+                    listo = 2;
+                }
             }
             cont += 1;
         }
@@ -95,33 +100,90 @@ $(document).ready(function() {
         if (listo == 1) {
             location.href = 'carrito_compras.html';
         }
+        else if (listo==2) {
+            app.showNotificactionVBC("Captura la cantidad y vuelve a intentalo.");
+        }
     });
+    
+    //Cargar Datos almacenados
     //
-    //Termina Carrito de compras
+    //Dentro del carrito de compras, se verifica si existen pedidos almacenados
+    var listo = 0, cont = 0;
+    //variables de llenado de tabla
+    var total_precio = 0, total_puntos = 0, total_vconsumible = 0, total_peso = 0;
+    var llenarTabla  = "";
+    while(listo == 0) {
+        //Se recorren las variables almacenadas desde el indice 0 hasta ya no encontrar
+        //si no encuentra variables almacenadas, sale del ciclo
+        if (window.localStorage.getItem('datosCarrito' + cont)) {
+            //se extraen los datos locales
+            var extraer = localStorage.getItem('datosCarrito' + cont);
+            //se convierte la cadena en array y se asignan valores
+            var resArray = extraer.split('","');
+            var codigo      = resArray[0];
+            var articulo    = resArray[1];
+            var precio      = resArray[2];
+            var puntos      = resArray[3];
+            var vconsumible = resArray[4];
+            var peso        = resArray[5];
+            var cantidad    = resArray[6];
+            var total       = (precio.substring(1, precio.length))*cantidad;
+            var tpuntos     = (puntos*cantidad);
+            var tvconsumible= (vconsumible*cantidad);
+            var tpeso       = (peso*cantidad);
+            total_precio      += total;
+            total_puntos      += tpuntos;
+            total_vconsumible += tvconsumible;
+            total_peso        += tpeso;
+            //se llena la tabla del carrito con los pedidos extraidos
+            llenarTabla += "<tr>";
+            llenarTabla +=      "<td>" + articulo + "</td>";
+            llenarTabla +=      "<td>" + codigo + "</td>";
+            llenarTabla +=      "<td>" + cantidad + "</td>";
+            llenarTabla +=      "<td>" + precio + "</td>";
+            llenarTabla +=      "<td>" + puntos + "</td>";
+            llenarTabla +=      "<td>" + vconsumible + "</td>";
+            llenarTabla +=      "<td>$" + total + "</td>";//total precio
+            llenarTabla +=      "<td>" + tpuntos + "</td>";//total puntos
+            llenarTabla +=      "<td>" + tvconsumible + "</td>";//total valor consumible
+            llenarTabla +=      "<td>" + Math.round(tpeso*100)/100 + "kg.</td>";
+            llenarTabla += "</tr>";
+        } else {
+            listo = 1;
+        }
+        cont += 1;
+    }
+    llenarTabla += "<tr id='sumatoria'>";
+    llenarTabla +=      "<td id='subtotal' colspan='6' align='right'><strong>Subtotal</string></td>";
+    llenarTabla +=      "<td id='total_precio'>$" + total_precio + "</td>";
+    llenarTabla +=      "<td id='total_puntos'>" + total_puntos + "</td>";
+    llenarTabla +=      "<td id='total_vconsumible'>" + total_vconsumible + "</td>";
+    llenarTabla +=      "<td id='total_peso'>" + Math.round(total_peso*100) / 100 + "kg. </td>";
+    llenarTabla += "</tr>";
+    $("#datos_carrito").html(llenarTabla);
 
-
-/*
-var listo = 0, cont = 0;
+    //Cancelar pedido
+    //
+    $('.cancelar').click(function() {
+        var listo = 0, cont = 0;
         while(listo == 0) {
             if (window.localStorage.getItem('datosCarrito' + cont)) {
-                //se extraen los datos locales
-                var extraer = localStorage.getItem('datosCarrito' + cont);
-                //se convierte la cadena en array
-                var resArray = extraer.split('","');
-                //se recorre el array para posteriormente ser separado
-                for(var i = 0; i < resArray.length; i++) {
-                    console.log(resArray[i]);
-                }
-            } else {
+                localStorage.removeItem('datosCarrito' + cont);
+            }
+            else {
+                //Ya que se eliminaron todos los pedidos
+                //se procede a salir del ciclo.
                 listo = 1;
             }
             cont += 1;
         }
-        */
+        $('#datos_carrito').html("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+    });
 
+    //
+    //Termina Carrito de compras
 
-
-    //Menú 
+    //Menú
     //
     var contador = 1;
     $('.menu_bar').click(function(){

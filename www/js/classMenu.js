@@ -7,7 +7,6 @@ var menu = {
         window.location = "welcome.html";
     },
     carrito:function(){
-        $('#showMenu').trigger('click');
         window.location = "carrito_compras_catalogo.html";
     },
     suscriptores:function(){
@@ -22,7 +21,6 @@ var menu = {
         var rutaAbsoluta = self.location.href;
         var posicionUltimaBarra = rutaAbsoluta.lastIndexOf("/");
         var rutaRelativa = rutaAbsoluta.substring( posicionUltimaBarra + "/".length , rutaAbsoluta.length );
-        
         return rutaRelativa;       
     },
     compararRuta:function(){
