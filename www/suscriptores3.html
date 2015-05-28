@@ -25,7 +25,7 @@
 
         <!-- Encabezado de la página -->
         <div data-role="header" data-theme="a">
-            <h1>Información Personal</h1>
+            <h1>Ingreso de Direcciones</h1>
             <div class="menu_bar">
                 <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
             </div>
@@ -35,7 +35,8 @@
         <div data-role="content" id="contenedor" style="overflow-x: auto;">
 
             <div id="bienvenida">
-                <p>Por favor complete la siguiente información(todos los campos son obligatorios).</p>
+                <p>Pida la siguiente información para la dirección Fiscal(todos los campos son obligatorios).</p>
+                <p style="font-weight:normal">Si la dirección Fiscal y de entrega de pedidos son iguales, marque el recuadro llamado "Misma dirección Fiscal".</p>
             </div>
             
             <div id="clear" >
@@ -44,23 +45,28 @@
                     <table>
                          <tbody>
                            <tr>
-                             <th>RFC:</th>
-                             <td><input data-mini="true" type="text" name="txtRFC" id="txtRFC" onblur="ValidaRfc(this.value)" required></td>
+                             <th>País:</th>
+                             <td>
+                                 <select data-mini="true" name="pais" id="pais">
+                                     <option value="1">MEXICO</option>
+                                 </select>
+                             </td>
                            </tr>
                            <tr>
-                             <th>CURP:</th>
-                             <td><input data-mini="true" type="text" name="txtCURP" id="txtCURP" onblur="ValidaCurp(this.value)" required></td>                                                   
+                             <th>Domicilio:</th>
+                             <td>
+                                <input data-mini="true" type="text" name="txtCalle" id="txtCalle" placeholder="Calle">
+                                <input data-mini="true" type="text" name="txtNum" id="txtNum" placeholder="Núm. Exterior">
+                            </td>                                                   
                            </tr>
                             <tr>
-                                <th>Nombre(s) Apellido(s):</th>
+                                <th>Colonia:</th>
                                 <td>
-                                    <input data-mini="true" type="text" name="txtNombre" id="txtNombre" placeholder="Nombre(s)">
-                                    <input data-mini="true" type="text" name="txtApePat" id="txtApePat" placeholder="Apellido Materno">
-                                    <input data-mini="true" type="text" name="txtApeMat" id="txtApeMat" placeholder="Apellido Paterno">
+                                    <input data-mini="true" type="text" name="txtColonia" id="txtColonia">
                                 </td>    
                             </tr>
                             <tr>
-                                <th>Fecha de Nacimiento / Lugar de Nacimiento:</th>
+                                <th>Ciudad</th>
                                 <td>
                                     <select data-mini="true" data-inline="true" name="dia" id="dia">
                                         <option value="dia">Día</option>
@@ -78,7 +84,7 @@
                                 </td>    
                             </tr>
                             <tr>
-                                <th>Sexo:</th>
+                                <th>Estado</th>
                                 <td>
                                     <select data-mini="true" name="sexo" id="sexo">
                                         <option value="1">Masculino</option>
@@ -87,73 +93,9 @@
                                 </td>    
                             </tr>
                            <tr>
-                                <th>Teléfono:</th>
+                                <th>Código Postal:</th>
                                 <td><input data-mini="true" type="number" name="txtTelefono" id="txtTelefono"></td>    
                            </tr>
-                           <tr>
-                                <th>Correo Electrónico:</th>
-                                <td><input data-mini="true" type="email" name="txtEmail" id="txtEmail" onblur="ValidaEmail(this.value)"></td>    
-                            </tr>
-                            <tr>
-                                <th>Confirmar Correo Electrónico:</th>
-                                <td><input data-mini="true" type="email" name="txtConfirmEmail" id="txtConfirmEmail" onblur="ValidaEmails(this.value)"></td>    
-                            </tr>
-                            <tr style="background-color:#ffffff">
-                                <td colspan="3" style="height:2px;"></td>
-                            </tr>
-                            <tr>
-                                <th>Kit de Inscripción:</th>
-                                <td>
-                                    <div class="selectGde">
-                                        <select data-mini="true" name="kit" id="kit">
-                                            <option value="1">PAQUETE DE INSCRIPCIÓN</option>                                        
-                                            <option value="2">PAQUETE DE INSCRIPCIÓN SERIALIZABLE</option>
-                                            <option value="3">PAQ. INVERSIÓN 1 - INVERSIÓN LIGERA</option>
-                                            <option value="4">PAQ. EMPRESARIAL 1 - INVERSIÓN LIGERA SERIALIZABLE</option>
-                                        </select>
-                                    </div>
-                                </td>    
-                            </tr>
-                            <tr id="codigoAutorizacion" style="display:none;">
-                                <th>Código de Autorización:</th>
-                                <td><input data-mini="true" type="number" name="txtCodigo" id="txtCodigo"></td>    
-                            </tr>
-                            <tr>
-                                <th>Método de envío:</th>
-                                <td>
-                                    <select data-mini="true" name="metodoEnvio" id="metodoEnvio">
-                                        <option>Selecciona uno</option>
-                                        <option value="1">Ocurre</option>
-                                        <option value="2">Mensajería</option>
-                                    </select>
-                                </td>    
-                            </tr>
-                            <tr id="centroAutorizadoTr" style="display:none;">
-                                <th>Centro Autorizado:</th>
-                                <td>
-                                    <select data-inline="true" data-mini="true" name="centroAutorizado" id="centroAutorizado">
-                                        <option>Seleccione</option>
-                                    </select>
-                                    <a style="background:rgba(8,124,205,1) !important; color: rgba(255,255,255,.8); font-size:8px;padding:1.5px;" data-role="button" data-inline="true" href="#direccion" data-rel="dialog">Dirección ></a>
-                                </td>    
-                            </tr>
-                            <tr id="paqueteriaTr" style="display:none;">
-                                <th>Paqueterías:</th>
-                                <td>
-                                    <select data-mini="true" name="paqueteria" id="paqueteria">
-                                        <option value="1">Estafeta</option>
-                                    </select>
-                                </td>    
-                            </tr>
-                            <tr>
-                                <th>Método de Pago:</th>
-                                <td>
-                                    <select data-mini="true" name="metodoPago" id="metodoPago">
-                                        <option value="1">Depósito</option>
-                                        <option value="2">Multipagos Bancomer</option>
-                                    </select>
-                                </td>    
-                            </tr>
                             <tr style="background-color:#ffffff">
                                 <td colspan="2" style="height:10px;"></td>
                             </tr>

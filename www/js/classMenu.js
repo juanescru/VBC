@@ -40,6 +40,12 @@ var menu = {
             case "suscriptores.html":
                 $('#active-suscriptores').addClass('active');
                 break;
+            case "suscriptores2.html":
+                $('#active-suscriptores').addClass('active');
+                break;
+            case "suscriptores3.html":
+                $('#active-suscriptores').addClass('active');
+                break;
             case "volumen_movil.html":
                 $('#active-volumen-movil').addClass('active');
                 break;
