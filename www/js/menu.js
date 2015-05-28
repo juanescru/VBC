@@ -207,7 +207,7 @@ $(document).ready(function() {
     //Termina menú
 
     //Limpia elementos &nbsp del código html
-    $('#clear').html($('#clear').html().replace(/&nbsp;/gi,''));
+    //$('#clear').html($('#clear').html().replace(/&nbsp;/gi,''));
 
     //Contador animado para números
     $('.count').each(function () {
