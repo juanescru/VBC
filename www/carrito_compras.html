@@ -22,7 +22,7 @@
         <div data-role="page" data-theme="a" id="page">
 
             <div data-role="header" data-theme="a">
-                <h1>Panel de Control</h1>
+                <h1>Carrito de compras</h1>
                 <div class="menu_bar">
                     <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
                 </div>
@@ -31,7 +31,12 @@
                 <!-- ***************************************************** -->
                 <!-- ***************************************************** -->
                 <!-- ***************************************************** -->
-                <div id="catalogo">
+                <div id="catalogo" class="car">
+                    <div style="padding-bottom: 5px; text-align:center">
+                        <a href="#" class="ver_categorias" onClick="menu.carrito()" data-role="button" data-mini="true" data-inline="true"><span class="icon-list2"></span> Ver categorías</a>
+                        <a href="#" class="cerrar_pedido" data-role="button" data-mini="true" data-inline="true"><span class="icon-checkmark"></span> Cerrar pedido</a>
+                        <a href="#" class="cancelar" data-role="button" data-mini="true" data-inline="true"><span class="icon-cross"></span> Cancelar</a>
+                    </div>
                     <table>
                         <thead>
                             <tr class="ui-bar-a">
@@ -44,10 +49,10 @@
                                 <th >Total</th>
                                 <th >Total Puntos</th>
                                 <th >Total Valor Consumible</th>
-                                <th >Peso</th>
+                                <th >Total Peso</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="datos_carrito">
                             <tr>
                                 <td></td>
                                 <td></td>
@@ -62,6 +67,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <div style="padding-bottom: 5px; text-align:center">
+                        <a href="#" class="ver_categorias" onClick="menu.carrito()" data-role="button" data-mini="true" data-inline="true"><span class="icon-list2"></span> Ver categorías</a>
+                        <a href="#" class="cerrar_pedido" data-role="button" data-mini="true" data-inline="true"><span class="icon-checkmark"></span> Cerrar pedido</a>
+                        <a href="#" class="cancelar" data-role="button" data-mini="true" data-inline="true"><span class="icon-cross"></span> Cancelar</a>
+                    </div>
                 </div>
 
                 <!-- ***************************************************** -->

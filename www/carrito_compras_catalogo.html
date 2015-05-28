@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="fonts/fonts.css">
         <link rel="stylesheet" type="text/css" href="css/carrito_compras.css">
 
-        <title>Panel de Control</title>
+        <title>Carrito de compras</title>
 
 
     </head>
@@ -47,17 +47,18 @@
                         <option>Eventos</option>
                         <option>Extras</option>
                     </select>
-                    <table>
+                    <table align="center">
                         <tbody>
                         <tr>
-                            <td><input type="search" name="search" id="search" data-mini="true" placeholder="Búsqueda" data-inline="true" /></td>
-                            <td><a href="#" data-role="button" data-mini="true" data-inline="true">Ir</a></td>
+                            <td><input type="search" name="search" id="search" data-mini="true" placeholder="Buscar" data-inline="true" /></td>
+                            <td><a href="#" data-role="button" data-mini="true" data-inline="true"><span class="icon-search"></span></a></td>
+                            <td><a href="#" data-role="button" onClick="javascript:location.href='carrito_compras.html'" data-mini="true" data-inline="true"><span class="icon-cart"></span> Ir</a></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <hr />
-                <div id="catalogo">
+                <div id="catalogo" class="cat">
                     <table>
                         <thead>
                             <tr class="ui-bar-a">
@@ -73,7 +74,7 @@
                         <tbody>
                             <tr id="TR-AP1002">
                                 <td id="AP1002"><a href="carrito_compras_detalles.html">AP1002</a></td>
-                                <td id="DES-AP1002">Libreta logotipo REDNATURA</td>
+                                <td id="DES-AP1002">Libreta logotipo REDNATURA al dos por uno</td>
                                 <td id="PRE-AP1002">$58.00</td>
                                 <td id="PUN-AP1002">0.00</td>
                                 <td id="VCO-AP1002">0.00</td>
