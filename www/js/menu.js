@@ -21,10 +21,18 @@ $(document).ready(function() {
             var fin = 0;
             fin = $('.activo').size();
             //si solo hay 1 etiqueta con la clase activo, redirecciona al enlace
-            //si el resultado fuera mayor a 1, significa que continua navegando, por lo cual
-            //no debe redireccionar
             if (fin == 1) {
                 location.href=nameHref;
+            } else {
+                //si el resultado fuera mayor a 1, verifica cual es el tag padre
+                var padre = "";
+                padre = $(this).parent()[0]; //padre inmediato
+                padre = padre.tagName; //Tag del padre
+                //Si el tag padre es un H3, redirecciona
+                //H3 => Redirecciona; a.link-back => Regresar
+                if (padre == 'H3') {
+                    location.href=nameHref;
+                }
             }
         });
     }
@@ -155,7 +163,7 @@ $(document).ready(function() {
     }
     llenarTabla += "<tr id='sumatoria'>";
     llenarTabla +=      "<td id='subtotal' colspan='6' align='right'><strong>Subtotal</string></td>";
-    llenarTabla +=      "<td id='total_precio'>$" + total_precio + "</td>";
+    llenarTabla +=      "<td id='total_precio'>$" + Math.round(total_precio*100) / 100 + "</td>";
     llenarTabla +=      "<td id='total_puntos'>" + total_puntos + "</td>";
     llenarTabla +=      "<td id='total_vconsumible'>" + total_vconsumible + "</td>";
     llenarTabla +=      "<td id='total_peso'>" + Math.round(total_peso*100) / 100 + "kg. </td>";
@@ -177,8 +185,25 @@ $(document).ready(function() {
             }
             cont += 1;
         }
-        $('#datos_carrito').html("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+        if(menu.checkRelativeRoot() == "carrito_compras.html") {
+            $('#datos_carrito').html("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+        } else {
+            location.href="carrito_compras.html";
+        }
     });
+
+    // Cerrar pedido
+    //
+    $('.cerrar_pedido').click(function() {
+        if (!window.localStorage.getItem('datosCarrito0')) {
+            app.showNotificactionVBC('No tienes pedidos que prcesar');
+            alert('dentro');
+        }
+        else {
+            location.href='carrito_compras_levantar.html';
+        }
+    });
+
 
     //
     //Termina Carrito de compras
@@ -252,5 +277,9 @@ $(document).ready(function() {
             }
         });
     });
-
 });
+
+//Redireccionar
+function Href(url) {
+    location.href=url;
+}

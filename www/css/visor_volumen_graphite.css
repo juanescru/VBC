@@ -94,6 +94,9 @@
 	color: white;
 }
 .graphite .dd-header h3 .dd-count {display: none;}
+.graphite .dd-wrapper {
+	overflow: hidden;
+}
 
 .clear {clear: both;}
 
@@ -106,6 +109,7 @@
 .dd-wrapper .dd-menu {
 	overflow: hidden;
 	position: relative;
+	width: 2000px !important;
 }
 .dd-wrapper  .dd-menu ul {
 	margin: 0;

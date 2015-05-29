@@ -14,7 +14,7 @@
         <link rel="stylesheet" type="text/css" href="fonts/fonts.css">
         <link rel="stylesheet" type="text/css" href="css/carrito_compras.css">
 
-        <title>Carrito de Compras - Ordenes</title>
+        <title>Levantar pedido</title>
 
 
     </head>
@@ -22,7 +22,7 @@
         <div data-role="page" data-theme="a" id="page">
 
             <div data-role="header" data-theme="a">
-                <h1>Carrito de compras</h1>
+                <h1>Levantar pedido</h1>
                 <div class="menu_bar">
                     <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
                 </div>
@@ -31,46 +31,41 @@
                 <!-- ***************************************************** -->
                 <!-- ***************************************************** -->
                 <!-- ***************************************************** -->
-                <div id="catalogo" class="car">
-                    <div style="padding-bottom: 5px; text-align:center">
-                        <a href="#" class="ver_categorias" onClick="menu.carrito()" data-role="button" data-mini="true" data-inline="true"><span class="icon-list2"></span> Ver categorías</a>
-                        <a href="#" class="cerrar_pedido" data-role="button" data-mini="true" data-inline="true"><span class="icon-checkmark"></span> Cerrar pedido</a>
-                        <a href="#" class="cancelar" data-role="button" data-mini="true" data-inline="true"><span class="icon-cross"></span> Cancelar</a>
-                    </div>
+                <div id="catalogo" class="levantar">
+                    
                     <table>
-                        <thead>
-                            <tr class="ui-bar-a">
-                                <th >Artículo</th>
-                                <th >Código</th>
-                                <th >Cantidad</th>
-                                <th >Precio del Artículo</th>
-                                <th >Puntos</th>
-                                <th >Valor Consumible</th>
-                                <th >Total</th>
-                                <th >Total Puntos</th>
-                                <th >Total Valor Consumible</th>
-                                <th >Total Peso</th>
-                            </tr>
-                        </thead>
-                        <tbody id="datos_carrito">
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
+                        <tr>
+                            <td class="descrip">Metodo de envío</td>
+                            <td>
+                                <select id="metodo-envio">
+                                    <option>Mensajería</option>
+                                    <option>Ocurre</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="descrip">Paquetería</td>
+                            <td>
+                                <select id="paqueteria">
+                                    <option>Estafeta</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="descrip">Forma de pago</td>
+                            <td>
+                                <select id="forma-pago">
+                                    <option>Depósito</option>
+                                    <option>Multipagos Bancomer</option>
+                                </select>
+                            </td>
+                        </tr>
                     </table>
+
                     <div style="padding-bottom: 5px; text-align:center">
-                        <a href="#" class="ver_categorias" onClick="menu.carrito()" data-role="button" data-mini="true" data-inline="true"><span class="icon-list2"></span> Ver categorías</a>
-                        <a href="#" class="cerrar_pedido" data-role="button" data-mini="true" data-inline="true"><span class="icon-checkmark"></span> Cerrar pedido</a>
-                        <a href="#" class="cancelar" data-role="button" data-mini="true" data-inline="true"><span class="icon-cross"></span> Cancelar</a>
+                        <a href="#" class="ver_categorias" onClick="Href('carrito_compras.html')" data-role="button" data-mini="true" data-inline="true"><span class="icon-cart"></span> Ver carrito</a>
+                        <a href="#" class="cancelar" data-role="button" data-mini="true" data-inline="true"><span class="icon-cross"></span> Cancelar orden</a>
+                        <a href="#" class="cerrar_pedido" data-role="button" data-mini="true" data-inline="true">Siguiente <span class="icon-arrow-right"></span></a>
                     </div>
                 </div>
 
