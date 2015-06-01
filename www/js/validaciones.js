@@ -41,6 +41,23 @@ function ValidaCurp(curpStr) {
 	
 }
 
+function ValidaTelefono(telefonoStr){
+	var strCorrecta;
+	strCorrecta = telefonoStr;
+
+	var valid = /^\d{10}$/;
+
+	var validTelefono = new RegExp(valid);
+	var matchArray = strCorrecta.match(validTelefono);
+	if(matchArray == null){
+		app.showNotificactionVBC("El número de teléfono debe contener 10 dífitos");
+		//alert("mal");
+		return false;
+	}else{
+		return true;
+	}
+}
+
 function ValidaEmail(emailStr) {
 	var strCorrecta;
 	strCorrecta = emailStr;	
@@ -73,7 +90,54 @@ function ValidaEmails(email2){
 	}
 }
 
+function ValidaAlias(aliasStr){
+	var strCorrecta;
+	strCorrecta = aliasStr;
+
+	var valid = "^[A-Za-z0-9]{0,10}$";
+	var validAlias = new RegExp(valid);
+	var matchArray = strCorrecta.match(validAlias);
+	if(matchArray == null){
+		app.showNotificactionVBC("Su Alias es muy largo o contiene caracteres no válidos");
+		//alert("mal");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function ValidaContraseña(passwordStr){
+	var strCorrecta;
+	strCorrecta = passwordStr;
+
+	var valid = "^[A-Za-z0-9]{8,12}$";
+	var validPassword = new RegExp(valid);
+	var matchArray = strCorrecta.match(validPassword);
+	if(matchArray == null){
+		app.showNotificactionVBC("La contraseña solo puede contener números y letras y no debe ser menor que 8 ni mayor que 12 caracteres");
+		//	alert("mal");
+		return false;
+	}else{
+		return true;
+	}
+}
+
+function ValidaContraseña2(password2){
+	var passwordUno = $('#txtPassword').val();
+
+	if(password2 != passwordUno){
+		//alert("no coinciden");
+		app.showNotificactionVBC('Su Contraseña no coincide con la confirmación');
+
+		return false;
+	}else{
+		return true;
+	}
+}
+
 function ValidaCamposVacios(){
+	var rfc = $('#txtRFC').val();
+	var curp = $('#txtCURP').val();
 	var nombre = $('#txtNombre').val();
 	var apePat = $('#txtApePat').val();
 	var apeMat = $('#txtApeMat').val();
@@ -82,15 +146,48 @@ function ValidaCamposVacios(){
 	var ano = $('#ano').val();
 	var lugarNacimiento = $('#txtLugarNacimiento').val();
 	var telefono = $('#txtTelefono').val();
+	var email = $('#txtEmail').val();
+	var emailConfirm = $('#txtConfirmEmail').val();
 	var codigo = $('#txtCodigo').val();
 	var metodoEnvio = $('#metodoEnvio').val();
 	var centroAutorizado = $('#centroAutorizado').val();
 
 	if(nombre == "" || apePat == "" || apeMat == "" || dia == "dia" || mes == "mes" || ano == "ano" || 
-		lugarNacimiento == "" || telefono == "" || metodoEnvio == ""){
-		alert("Campos Vacíos");
-		//app.showNotificactionVBC('Campos Vacíos');
+		lugarNacimiento == "" || telefono == "" || metodoEnvio == "" || rfc == "" || curp == "" || email == "" || 
+		emailConfirm == ""){
+		//alert("Campos Vacíos");
+		app.showNotificactionVBC('Campos Vacíos');
 	}else{
 		window.location.href = "suscriptores3.html";
+	}
+}
+
+function ValidaCamposVacios2(){
+	var calle = $('#txtCalle').val();
+	var num = $('#txtNum').val();
+	var colonia = $('#txtColonia').val();
+	var ciudad = $('#txtCiudad').val();
+	var cp = $('#txtCP').val();
+
+	if(calle == "" || num == "" || colonia == "" || ciudad == "" || cp == ""){
+		//alert("Campos Vacíos");
+		app.showNotificactionVBC('Campos Vacíos');
+	}else{
+		window.location.href = "suscriptores4.html";
+	}
+}
+
+
+
+function ValidaCamposVacios3(){
+	var alias = $('#txtAlias').val();
+	var password = $('#txtPassword').val();
+	var passwordConfirm = $('#txtPasswordConfirm').val();
+
+	if(alias == "" || password == "" || passwordConfirm == ""){
+		//alert("Campos Vacíos");
+		app.showNotificactionVBC('Campos Vacíos');
+	}else{
+		window.location.href = "suscriptores5.html";
 	}
 }

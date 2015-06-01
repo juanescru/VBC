@@ -61,7 +61,7 @@
                             </tr>
                             <tr>
                                 <th>Fecha de Nacimiento / Lugar de Nacimiento:</th>
-                                <td>
+                                <td id="tdFechaNacimiento">
                                     <select data-mini="true" data-inline="true" name="dia" id="dia">
                                         <option value="dia">Día</option>
                                         <option value="1">01</option>
@@ -79,7 +79,7 @@
                             </tr>
                             <tr>
                                 <th>Sexo:</th>
-                                <td>
+                                <td id="tdSexo">
                                     <select data-mini="true" name="sexo" id="sexo">
                                         <option value="1">Masculino</option>
                                         <option value="2">Femenino</option>
@@ -88,7 +88,7 @@
                             </tr>
                            <tr>
                                 <th>Teléfono:</th>
-                                <td><input data-mini="true" type="number" name="txtTelefono" id="txtTelefono"></td>    
+                                <td><input data-mini="true" type="number" name="txtTelefono" id="txtTelefono" onblur="ValidaTelefono(this.value)"></td>    
                            </tr>
                            <tr>
                                 <th>Correo Electrónico:</th>
@@ -103,7 +103,7 @@
                             </tr>
                             <tr>
                                 <th>Kit de Inscripción:</th>
-                                <td>
+                                <td id="tdKit">
                                     <div class="selectGde">
                                         <select data-mini="true" name="kit" id="kit">
                                             <option value="1">PAQUETE DE INSCRIPCIÓN</option>                                        
@@ -120,7 +120,7 @@
                             </tr>
                             <tr>
                                 <th>Método de envío:</th>
-                                <td>
+                                <td id="tdMetodoEnvio">
                                     <select data-mini="true" name="metodoEnvio" id="metodoEnvio">
                                         <option>Selecciona uno</option>
                                         <option value="1">Ocurre</option>
@@ -130,16 +130,17 @@
                             </tr>
                             <tr id="centroAutorizadoTr" style="display:none;">
                                 <th>Centro Autorizado:</th>
-                                <td>
+                                <td id="tdCentroAutorizado">
                                     <select data-inline="true" data-mini="true" name="centroAutorizado" id="centroAutorizado">
                                         <option>Seleccione</option>
+                                        <option value="1">Ecatepec</option>
                                     </select>
                                     <a style="background:rgba(8,124,205,1) !important; color: rgba(255,255,255,.8); font-size:8px;padding:1.5px;" data-role="button" data-inline="true" href="#direccion" data-rel="dialog">Dirección ></a>
                                 </td>    
                             </tr>
                             <tr id="paqueteriaTr" style="display:none;">
                                 <th>Paqueterías:</th>
-                                <td>
+                                <td id="tdPaqueteria">
                                     <select data-mini="true" name="paqueteria" id="paqueteria">
                                         <option value="1">Estafeta</option>
                                     </select>
@@ -147,7 +148,7 @@
                             </tr>
                             <tr>
                                 <th>Método de Pago:</th>
-                                <td>
+                                <td id="tdMetodoPago">
                                     <select data-mini="true" name="metodoPago" id="metodoPago">
                                         <option value="1">Depósito</option>
                                         <option value="2">Multipagos Bancomer</option>
@@ -159,9 +160,9 @@
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <a href="suscriptores.html" data-inline="true" data-mini="true" data-role="button"><- ANTERIOR</a>
+                                    <a href="#" onclick="Href('suscriptores.html')" data-inline="true" data-mini="true" data-role="button"><span class="icon-arrow-left"></span> ANTERIOR</a>
                                     <!--<a href="suscriptores3.html"  data-inline="true" data-mini="true" data-role="button">SIGUIENTE -></a>-->
-                                    <input type="button" data-inline="true" data-mini="true" onclick="ValidaCamposVacios()" value="SIGUIENTE ->">
+                                    <input type="button" id="btnSiguiente2" name="btnSiguiente2" data-inline="true" data-mini="true" onclick="ValidaCamposVacios()" value="SIGUIENTE <span class='icon-arrow-right'></span>">
                                 </td>
                             </tr>
                          </tbody>

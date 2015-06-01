@@ -25,7 +25,7 @@
 
         <!-- Encabezado de la página -->
         <div data-role="header" data-theme="a">
-            <h1>Ingreso de Direcciones</h1>
+            <h1>Información de Seguridad</h1>
             <div class="menu_bar">
                 <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
             </div>
@@ -35,8 +35,8 @@
         <div data-role="content" id="contenedor" style="overflow-x: auto;">
 
             <div id="bienvenida">
-                <p>Pida la siguiente información para la dirección Fiscal(todos los campos son obligatorios).</p>
-                <p style="font-weight:normal">Si la dirección Fiscal y de entrega de pedidos son iguales, marque el recuadro llamado "Misma dirección Fiscal".</p>
+                <p>Por favor, seleccione cuidadosamente la siguiente información (todos los campos son obligatorios).</p>
+                <p style="font-weight:normal">La siguiente información será usada para darle acceso a las áreas protegidas del sistema así como para identificarle con nuestro departamento de servicio al cliente. Asegúrese de recordar ésta información y de no compartirla con nadie</p>
             </div>
             
             <div id="clear" >
@@ -45,57 +45,31 @@
                     <table>
                          <tbody>
                            <tr>
-                             <th>País:</th>
-                             <td id="tdPais">
-                                 <select data-mini="true" name="pais" id="pais">
-                                     <option value="1">MEXICO</option>
-                                 </select>
+                             <th>Alias:</th>
+                             <td>
+                                 <input data-mini="true" type="text" name="txtAlias" id="txtAlias" onblur="ValidaAlias(this.value)">
                              </td>
                            </tr>
                            <tr>
-                             <th>Domicilio:</th>
+                             <th>Contraseña (8 - 12 caracteres o dígitos):</th>
                              <td>
-                                <input data-mini="true" type="text" name="txtCalle" id="txtCalle" placeholder="Calle">
-                                <input data-mini="true" type="number" name="txtNum" id="txtNum" placeholder="Núm. Exterior">
+                                <input data-mini="true" type="password" name="txtPassword" id="txtPassword" onblur="ValidaContraseña(this.value)">
                             </td>                                                   
                            </tr>
                             <tr>
-                                <th>Colonia:</th>
+                                <th>Confirme su Contraseña:</th>
                                 <td>
-                                    <input data-mini="true" type="text" name="txtColonia" id="txtColonia">
+                                    <input data-mini="true" type="password" name="txtPasswordConfirm" id="txtPasswordConfirm" onblur="ValidaContraseña2(this.value)">
                                 </td>    
-                            </tr>
-                            <tr>
-                                <th>Ciudad</th>
-                                <td>
-                                    <input data-mini="true" type="text" name="txtCiudad" id="txtCiudad">    
-                                </td>    
-                            </tr>
-                            <tr>
-                                <th>Estado</th>
-                                <td id="tdEstado">
-                                    <select data-mini="true" name="estado" id="estado">
-                                        <option value="1">AGUASCALIENTES</option>
-                                        <option value="2">MEXICO</option>
-                                    </select>
-                                </td>    
-                            </tr>
-                           <tr>
-                                <th>Código Postal:</th>
-                                <td><input data-mini="true" type="number" name="txtCP" id="txtCP"></td>    
-                           </tr>
-                           <tr>
-                               <th>Misma Dirección Fiscal</th>
-                               <td><input data-role="none" type="checkbox" name="cbMismaDir" id="cbMismaDir" value="cbMismaDir"><p>Sí, es la misma dirección para entrega de pedidos</p></td>
-                           </tr>
+                            </tr>                            
                             <tr style="background-color:#ffffff">
                                 <td colspan="2" style="height:10px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <a href="#" onclick="Href('suscriptores2.html')" data-inline="true" data-mini="true" data-role="button"><span class="icon-arrow-left"></span> ANTERIOR</a>
+                                    <a href="#" onclick="Href('suscriptores3.html')" data-inline="true" data-mini="true" data-role="button"><span class="icon-arrow-left"></span> ANTERIOR</a>
                                     <!--<a href="suscriptores3.html"  data-inline="true" data-mini="true" data-role="button">SIGUIENTE -></a>-->
-                                    <input type="button" id="btnSiguiente3" name="btnSiguiente3" data-inline="true" data-mini="true" onclick="ValidaCamposVacios2()" value="SIGUIENTE <span class='icon-arrow-right'></span>">
+                                    <input type="button" id="btnSiguiente4" name="btnSiguiente4" data-inline="true" data-mini="true" onclick="ValidaCamposVacios3()" value="SIGUIENTE <span class='icon-arrow-right'></span>">
                                 </td>
                             </tr>
                          </tbody>
