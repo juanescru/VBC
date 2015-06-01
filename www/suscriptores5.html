@@ -25,7 +25,7 @@
 
         <!-- Encabezado de la página -->
         <div data-role="header" data-theme="a">
-            <h1>Ingreso de Direcciones</h1>
+            <h1>Confirmación de Inscripción</h1>
             <div class="menu_bar">
                 <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
             </div>
@@ -35,8 +35,8 @@
         <div data-role="content" id="contenedor" style="overflow-x: auto;">
 
             <div id="bienvenida">
-                <p>Pida la siguiente información para la dirección Fiscal(todos los campos son obligatorios).</p>
-                <p style="font-weight:normal">Si la dirección Fiscal y de entrega de pedidos son iguales, marque el recuadro llamado "Misma dirección Fiscal".</p>
+                <p>Por favor revise su información, si hay algo que desee cambiar presione el botón ANTERIOR para ir a la ventana correspondiente.</p>
+                <p style="font-weight:normal">Puede navegar hacia adelante y atrás usando los botones de ANTERIOR y SIGUIENTE.</p>
             </div>
             
             <div id="clear" >
@@ -45,57 +45,70 @@
                     <table>
                          <tbody>
                            <tr>
-                             <th>País:</th>
-                             <td id="tdPais">
-                                 <select data-mini="true" name="pais" id="pais">
-                                     <option value="1">MEXICO</option>
-                                 </select>
+                             <th>Nombre:</th>
+                             <td>
+                                 <label for="Nombre" id="lblNombre"></label>
                              </td>
                            </tr>
+                           <tr style="background-color:#ffffff">
+                                <td colspan="2" style="height:10px;"></td>
+                            </tr>
                            <tr>
-                             <th>Domicilio:</th>
+                             <th>Teléfono de Contacto:</th>
                              <td>
-                                <input data-mini="true" type="text" name="txtCalle" id="txtCalle" placeholder="Calle">
-                                <input data-mini="true" type="number" name="txtNum" id="txtNum" placeholder="Núm. Exterior">
+                                <label for="Telefono" id="lblTelefono"></label>
                             </td>                                                   
                            </tr>
-                            <tr>
-                                <th>Colonia:</th>
-                                <td>
-                                    <input data-mini="true" type="text" name="txtColonia" id="txtColonia">
-                                </td>    
+                           <tr style="background-color:#ffffff">
+                                <td colspan="2" style="height:10px;"></td>
                             </tr>
                             <tr>
-                                <th>Ciudad</th>
+                                <th>Correo Electrónico:</th>
                                 <td>
-                                    <input data-mini="true" type="text" name="txtCiudad" id="txtCiudad">    
+                                    <label for="Email" id="lblEmail"></label>
                                 </td>    
                             </tr>
+                            <tr style="background-color:#ffffff">
+                                <td colspan="2" style="height:10px;"></td>
+                            </tr>
                             <tr>
-                                <th>Estado</th>
+                                <th>Dirección Fiscal:</th>
                                 <td id="tdEstado">
-                                    <select data-mini="true" name="estado" id="estado">
-                                        <option value="1">AGUASCALIENTES</option>
-                                        <option value="2">MEXICO</option>
+                                    <label for="Calle" id="lblCalle"></label>
+                                    <label for="Colonia" id="lblColonia"></label>
+                                    <select data-mini="true" data-inline="true" name="estado" id="estado" disabled>
+                                        <option value="1">Aguascalientes</option>
+                                        <option value="2">México</option>
                                     </select>
+                                    <label for="CP" id="lblCP"></label>
+                                </td>    
+                            </tr> 
+                            <tr style="background-color:#ffffff">
+                                <td colspan="2" style="height:10px;"></td>
+                            </tr>
+                            <tr>
+                                <th>Número y Nombre de Patrocinador:</th>
+                                <td>
+                                    <label for="Patrocinador" id="lblPatrocinador"></label>
                                 </td>    
                             </tr>
-                           <tr>
-                                <th>Código Postal:</th>
-                                <td><input data-mini="true" type="number" name="txtCP" id="txtCP"></td>    
-                           </tr>
-                           <tr>
-                               <th>Misma Dirección Fiscal</th>
-                               <td><input data-role="none" type="checkbox" name="cbMismaDir" id="cbMismaDir" value="cbMismaDir"><p>Sí, es la misma dirección para entrega de pedidos</p></td>
-                           </tr>
+                            <tr style="background-color:#ffffff">
+                                <td colspan="2" style="height:10px;"></td>
+                            </tr>
+                            <tr>
+                                <th>Colocado Debajo de:</th>
+                                <td>
+                                    <label for="Colocacion" id="lblColocacion"></label>
+                                </td>    
+                            </tr> 
                             <tr style="background-color:#ffffff">
                                 <td colspan="2" style="height:10px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <a href="#" onclick="Href('suscriptores2.html')" data-inline="true" data-mini="true" data-role="button"><span class="icon-arrow-left"></span> ANTERIOR</a>
+                                    <a href="#" onclick="Href('suscriptores4.html')" data-inline="true" data-mini="true" data-role="button"><span class="icon-arrow-left"></span> ANTERIOR</a>
                                     <!--<a href="suscriptores3.html"  data-inline="true" data-mini="true" data-role="button">SIGUIENTE -></a>-->
-                                    <input type="button" id="btnSiguiente3" name="btnSiguiente3" data-inline="true" data-mini="true" onclick="ValidaCamposVacios2()" value="SIGUIENTE <span class='icon-arrow-right'></span>">
+                                    <input type="button" id="btnSiguiente5" name="btnSiguiente4" data-inline="true" data-mini="true" onclick="" value="TERMINAR <span class='icon-point-right'></span>">
                                 </td>
                             </tr>
                          </tbody>

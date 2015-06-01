@@ -39,6 +39,276 @@ $(document).ready(function() {
     //
     //Termina volumen móvil
 
+    //
+    //Inscripciones
+
+
+    $('#btnContinuar').click(function() {
+        //Capturo el valor de los campos a través de su id
+        var lenguaje = $('#lenguaje').val();
+        var numPatrocinador = $('#lblNumeroPatrocinador').text();
+        var nombrePatrocinador = $('#lblNombrePatrocinador').text();
+        //Se crea una variable para almacenar cadena para el array
+        var cadena = "";
+        //Se guarda toda la cadena
+        //Se agrega "," para utilizarlo de escape al convertirlo en array
+        cadena += lenguaje + "\",";
+        cadena += "\"" + numPatrocinador + "\",";
+        cadena += "\"" + nombrePatrocinador;
+        //Se almacena localmente el valor del array en una variable local
+        localStorage.setItem('susc1Local' , cadena);
+    });
+
+    $('#btnSiguiente2').click(function() {
+        //Capturo el valor de los campos a través de su id
+        var rfc = $('#txtRFC').val();
+        var curp = $('#txtCURP').val();
+        var nombre = $('#txtNombre').val();
+        var apePat = $('#txtApePat').val();
+        var apeMat = $('#txtApeMat').val();
+        var dia = $('#dia').val();
+        var mes = $('#mes').val();
+        var ano = $('#ano').val();
+        var lugarNacimiento = $('#txtLugarNacimiento').val();
+        var sexo = $('#sexo').val();
+        var telefono = $('#txtTelefono').val();
+        var email = $('#txtEmail').val();
+        var kit = $('#kit').val();
+        var codigoAutorizacion = $('#txtCodigo').val();
+        var metodoEnvio = $('#metodoEnvio').val();
+        var centroAutorizado = $('#centroAutorizado').val();
+        var paqueteria = $('#paqueteria').val();
+        var metodoPago = $('#metodoPago').val();
+        //Se crea una variable para almacenar cadena para el array
+        var cadena = "";
+        //Se guarda toda la cadena
+        //Se agrega "," para utilizarlo de escape al convertirlo en array
+        cadena += rfc + "\",";
+        cadena += "\"" + curp + "\",";
+        cadena += "\"" + nombre + "\",";
+        cadena += "\"" + apePat + "\",";
+        cadena += "\"" + apeMat + "\",";
+        cadena += "\"" + dia + "\",";
+        cadena += "\"" + mes + "\",";
+        cadena += "\"" + ano + "\",";
+        cadena += "\"" + lugarNacimiento + "\",";
+        cadena += "\"" + sexo + "\",";
+        cadena += "\"" + telefono + "\",";
+        cadena += "\"" + email + "\",";
+        cadena += "\"" + kit + "\",";
+        if(kit == 2 || kit == 4 || kit == 6 || kit == 8 || kit == 10){
+            cadena += "\"" + codigoAutorizacion + "\",";
+        }      
+        cadena += "\"" + metodoEnvio + "\",";
+        if(metodoEnvio == 1){
+            cadena += "\"" + centroAutorizado + "\",";
+        }else if(metodoEnvio == 2){ 
+            cadena += "\"" + paqueteria + "\",";
+        }       
+        cadena += "\"" + metodoPago;
+        //Se almacena localmente el valor del array en una variable local
+        localStorage.setItem('susc2Local' ,cadena);
+    });
+
+    $('#btnSiguiente3').click(function() {
+        var flag = 0;
+        //Capturo el valor de los campos a través de su id
+        var pais = $('#pais').val();
+        var calle = $('#txtCalle').val();
+        var num = $('#txtNum').val();
+        var colonia = $('#txtColonia').val();
+        var ciudad = $('#txtCiudad').val();
+        var estado = $('#estado').val();
+        var cp = $('#txtCP').val();
+        var cbMismaDir = document.getElementById('cbMismaDir');     
+        //Se crea una variable para almacenar cadena para el array
+        var cadena = "";
+        //Se guarda toda la cadena
+        //Se agrega "," para utilizarlo de escape al convertirlo en array
+        cadena += pais + "\",";
+        cadena += "\"" + calle + "\",";
+        cadena += "\"" + num + "\",";
+        cadena += "\"" + colonia + "\",";
+        cadena += "\"" + ciudad + "\",";
+        cadena += "\"" + estado + "\",";
+        cadena += "\"" + cp + "\",";
+        if(cbMismaDir.checked){
+            flag = 1;
+        }else{
+            flag = 0;
+        }
+        cadena += "\"" + flag;
+        //Se almacena localmente el valor del array en una variable local
+        localStorage.setItem('susc3Local' ,cadena);
+    });
+
+    $('#btnSiguiente4').click(function() {
+        //Capturo el valor de los campos a través de su id
+        var alias = $('#txtAlias').val();
+        var password = $('#txtPassword').val();  
+        //Se crea una variable para almacenar cadena para el array
+        var cadena = "";
+        //Se guarda toda la cadena
+        //Se agrega "," para utilizarlo de escape al convertirlo en array
+        cadena += alias + "\",";
+        cadena += "\"" + password;
+        //Se almacena localmente el valor del array en una variable local
+        localStorage.setItem('susc4Local' ,cadena);
+    });
+
+    //Carga los datos locales de los campos de cada formulario hasta que termine la inscripción
+    if(menu.checkRelativeRoot() == "suscriptores.html"){
+        if(localStorage.getItem('susc1Local')){
+            //Extraemos los datos almacenados y los convertimos en Array
+            var extraer = localStorage.getItem('susc1Local');
+            var ResArray = extraer.split('","');
+
+            $('#lenguaje').val(ResArray[0]);
+            $("td#tdLenguaje span").text($('#lenguaje option:selected').text());
+        }
+    }
+
+    if(menu.checkRelativeRoot() == "suscriptores2.html"){
+        if(localStorage.getItem('susc2Local')){
+            //Extraemos los datos almacenados y los convertimos en Array
+            var extraer = localStorage.getItem('susc2Local');
+            var ResArray = extraer.split('","');
+
+            $('#txtRFC').val(ResArray[0]);
+            $('#txtCURP').val(ResArray[1]);
+            $('#txtNombre').val(ResArray[2]);
+            $('#txtApePat').val(ResArray[3]);
+            $('#txtApeMat').val(ResArray[4]);
+
+            $('#dia').val(ResArray[5]);
+            $('td#tdFechaNacimiento div:nth-child(1) div span').text($('#dia option:selected').text());
+
+            $('#mes').val(ResArray[6]);
+            $('td#tdFechaNacimiento div:nth-child(2) div span').text($('#mes option:selected').text());
+
+            $('#ano').val(ResArray[7]);
+            $('td#tdFechaNacimiento div:nth-child(3) div span').text($('#ano option:selected').text());
+
+            $('#txtLugarNacimiento').val(ResArray[8]);
+
+            $('#sexo').val(ResArray[9]);
+            $('td#tdSexo span').text($('#sexo option:selected').text());
+
+            $('#txtTelefono').val(ResArray[10]);
+            $('#txtEmail').val(ResArray[11]);
+
+            $('#kit').val(ResArray[12]);
+            $("td#tdKit span").text($('#kit option:selected').text());
+            if($('#kit').val() == 2 || $('#kit').val() == 4 || $('#kit').val() == 6 || $('#kit').val() == 8 || $('#kit').val() == 10){
+
+                $('tr#codigoAutorizacion').show(200);
+
+                $('#txtCodigo').val(ResArray[13]);
+
+                $('#metodoEnvio').val(ResArray[14]);
+                $("td#tdMetodoEnvio span").text($('#metodoEnvio option:selected').text());
+
+                if($('#metodoEnvio').val() == 1){
+                    $('tr#centroAutorizadoTr').show(200);
+                    $('#centroAutorizado').val(ResArray[15]);
+                    $("td#tdCentroAutorizado span").text($('#centroAutorizado option:selected').text());
+                }else{
+                    $('tr#paqueteriaTr').show(200);
+                    $('#paqueteria').val(ResArray[15]);
+                    $("td#tdPaqueteria span").text($('#paqueteria option:selected').text());
+                }
+
+                $('#metodoPago').val(ResArray[16]);
+                $("td#tdMetodoPago span").text($('#metodoPago option:selected').text());
+                                
+            }else{
+
+                $('#metodoEnvio').val(ResArray[13]);
+                $("td#tdMetodoEnvio span").text($('#metodoEnvio option:selected').text());
+
+                if($('#metodoEnvio').val() == 1){
+                    $('tr#centroAutorizadoTr').show(200);
+                    $('#centroAutorizado').val(ResArray[14]);
+                    $("td#tdCentroAutorizado span").text($('#centroAutorizado option:selected').text());
+                }else{
+                    $('tr#paqueteriaTr').show(200);
+                    $('#paqueteria').val(ResArray[14]);
+                    $("td#tdPaqueteria span").text($('#paqueteria option:selected').text());
+                }
+
+                $('#metodoPago').val(ResArray[15]);
+                $("td#tdMetodoPago span").text($('#metodoPago option:selected').text());
+            }
+
+        }
+    }
+
+    if(menu.checkRelativeRoot() == "suscriptores3.html"){
+        if(localStorage.getItem('susc3Local')){
+            //Extraemos los datos almacenados y los convertimos en Array
+            var extraer = localStorage.getItem('susc3Local');
+            var ResArray = extraer.split('","');
+
+            $('#pais').val(ResArray[0]);
+            $('td#tdPais span').text($('#pais option:selected').text());
+
+            $('#txtCalle').val(ResArray[1]);
+            $('#txtNum').val(ResArray[2]);
+            $('#txtColonia').val(ResArray[3]);
+            $('#txtCiudad').val(ResArray[4]);
+
+            $('#estado').val(ResArray[5]);
+            $('td#tdEstado span').text($('#estado option:selected').text());
+
+            $('#txtCP').val(ResArray[6]);
+
+            if(ResArray[7] == 1){
+                document.getElementById("cbMismaDir").checked = true;
+            }
+        }
+    }
+
+    if(menu.checkRelativeRoot() == "suscriptores4.html"){
+        if(localStorage.getItem('susc4Local')){
+            //Extraemos los datos almacenados y los convertimos en Array
+            var extraer = localStorage.getItem('susc4Local');
+            var ResArray = extraer.split('","');
+
+            $('#txtAlias').val(ResArray[0]);
+            $('#txtPassword').val(ResArray[1]);
+        }
+    }
+
+    if(menu.checkRelativeRoot() == "suscriptores5.html"){
+        if(localStorage.getItem("susc1Local") && localStorage.getItem('susc2Local') && localStorage.getItem('susc3Local')){
+            //Extraemos los datos almacenados y los convertimos en Array
+            var extraer1 = localStorage.getItem("susc2Local");
+            var ResArray1 = extraer1.split('","');
+
+
+            var extraer2 = localStorage.getItem('susc3Local');
+            var ResArray2 = extraer2.split('","');
+
+            var extraer3 = localStorage.getItem('susc1Local');
+            var ResArray3 = extraer3.split('","');
+
+            $('#lblNombre').text(ResArray1[2]+ ", " +ResArray1[3]+ " " +ResArray1[4]);
+            $('#lblTelefono').text(ResArray1[10]);
+            $('#lblEmail').text(ResArray1[11]);
+            $('#lblCalle').text(ResArray2[1]+ " " +ResArray2[2]+ "-");
+            $('#lblColonia').text(ResArray2[3]+ " " +ResArray2[4]);
+            $('#estado').val(ResArray2[5]);
+            $('#tdEstado span').text($('#estado option:selected').text());
+            $('#lblCP').text(ResArray2[6]);
+            $('#lblPatrocinador').text(ResArray3[1]+ ", " +ResArray3[2]);
+            $('#lblColocacion').text(ResArray3[1]+ ", " +ResArray3[2]);
+            alert(ResArray3);
+        }
+    }
+
+
+    //Termina Inscripciones
+    //
 
     //Carrito de compras
     //
@@ -267,7 +537,7 @@ $(document).ready(function() {
 
     //Contador animado para números
     $('.count').each(function () {
-        $(this).prop('Counter',0).animate({
+        $(this).prop('Counter',0.0).animate({
             Counter: $(this).text()
         }, {
             duration: 2000,
