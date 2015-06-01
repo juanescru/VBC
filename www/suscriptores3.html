@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=no">
+
+        <link rel="stylesheet" href="css/themes/vbc-theme.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/styleSuscriptores.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
+        <link rel="stylesheet" type="text/css" href="fonts/fonts.css">               
+
+        <title>Inscripciones</title>
+
+    </head>
+    <body>
+
+        <!-- Inicia Página -->
+        <div data-role="page" data-theme="a" id="inscripciones">
+
+        <!-- Encabezado de la página -->
+        <div data-role="header" data-theme="a">
+            <h1>Ingreso de Direcciones</h1>
+            <div class="menu_bar">
+                <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
+            </div>
+        </div>
+
+        <!-- Contenido de la página-->
+        <div data-role="content" id="contenedor" style="overflow-x: auto;">
+
+            <div id="bienvenida">
+                <p>Pida la siguiente información para la dirección Fiscal(todos los campos son obligatorios).</p>
+                <p style="font-weight:normal">Si la dirección Fiscal y de entrega de pedidos son iguales, marque el recuadro llamado "Misma dirección Fiscal".</p>
+            </div>
+            
+            <div id="clear" >
+                
+                <form action="#" id="inscripcion" name="inscripcion">
+                    <table>
+                         <tbody>
+                           <tr>
+                             <th>País:</th>
+                             <td>
+                                 <select data-mini="true" name="pais" id="pais">
+                                     <option value="1">MEXICO</option>
+                                 </select>
+                             </td>
+                           </tr>
+                           <tr>
+                             <th>Domicilio:</th>
+                             <td>
+                                <input data-mini="true" type="text" name="txtCalle" id="txtCalle" placeholder="Calle">
+                                <input data-mini="true" type="text" name="txtNum" id="txtNum" placeholder="Núm. Exterior">
+                            </td>                                                   
+                           </tr>
+                            <tr>
+                                <th>Colonia:</th>
+                                <td>
+                                    <input data-mini="true" type="text" name="txtColonia" id="txtColonia">
+                                </td>    
+                            </tr>
+                            <tr>
+                                <th>Ciudad</th>
+                                <td>
+                                    <select data-mini="true" data-inline="true" name="dia" id="dia">
+                                        <option value="dia">Día</option>
+                                        <option value="1">01</option>
+                                    </select>
+                                    <select data-mini="true" data-inline="true" name="mes" id="mes">
+                                        <option value="mes">Mes</option>
+                                        <option value="1">01</option>
+                                    </select>
+                                    <select data-mini="true" data-inline="true" name="ano" id="ano">
+                                        <option value="ano">Año</option>
+                                        <option value="1">1970</option>
+                                    </select>
+                                    <input data-mini="true" type="text" name="txtLugarNacimiento" id="txtLugarNacimiento" placeholder="Lugar de Nacimiento">
+                                </td>    
+                            </tr>
+                            <tr>
+                                <th>Estado</th>
+                                <td>
+                                    <select data-mini="true" name="sexo" id="sexo">
+                                        <option value="1">Masculino</option>
+                                        <option value="2">Femenino</option>
+                                    </select>
+                                </td>    
+                            </tr>
+                           <tr>
+                                <th>Código Postal:</th>
+                                <td><input data-mini="true" type="number" name="txtTelefono" id="txtTelefono"></td>    
+                           </tr>
+                            <tr style="background-color:#ffffff">
+                                <td colspan="2" style="height:10px;"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <a href="suscriptores.html" data-inline="true" data-mini="true" data-role="button"><- ANTERIOR</a>
+                                    <!--<a href="suscriptores3.html"  data-inline="true" data-mini="true" data-role="button">SIGUIENTE -></a>-->
+                                    <input type="button" data-inline="true" data-mini="true" onclick="ValidaCamposVacios()" value="SIGUIENTE ->">
+                                </td>
+                            </tr>
+                         </tbody>
+                   </table>
+                </form>
+        
+            </div>
+
+        </div>
+
+        <div id="deviceready" style="display: none">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+
+    </div>
+    
+   <!-- ********  MENÚ  ******** -->
+    <header>
+        <nav id="menu"></nav>
+    </header>
+    <section id="mascara"></section>
+    
+    <!--Inicia cuadro de dialogo para direcciones-->
+    <div data-role="page" data-theme="a" id="direccion">
+
+        <!--Encabezado del cuadro de dialogo-->
+        <div data-role="header" data-theme="a">
+            <h1>Dirección</h1>
+        </div><!--Termina Encabezado-->
+        
+        <!--Inicia contenido-->
+        <div data-role="content" data-theme="a">
+            <div id="contenidoDireccion">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th colspan="2" style="text-align:center">Aguascalientes</th>
+                        </tr>
+                        <tr>
+                            <th>Calle y Núm:</th>
+                            <td>Av Lópezx Mateos Oriente No.445 y 447 Esq. Jose</td>
+                        </tr>
+                        <tr>
+                            <th>Colonia:</th>
+                            <td>El encino</td>
+                        </tr>
+                        <tr>
+                            <th>Ciudad:</th>
+                            <td>Aguascalientes</td>
+                        </tr>
+                        <tr>
+                            <th>Estado:</th>
+                            <td>AGS</td>
+                        </tr>
+                        <tr>
+                            <th>CP:</th>
+                            <td>20240</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a href="#inscripciones" data-rel="back" data-role="button">Aceptar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!--Termina Contenido-->
+
+    </div><!--Termina Cuadro de dialogo-->
+
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/classMenu.js"></script>
+    <script type="text/javascript" src="js/suscriptores.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/validaciones.js"></script>
+    
+    <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+    <script type="text/javascript"> 
+            //El registro al servicio de google lo hacemos automáticamente
+            app.initialize();            
+            menu.cargarMenu();
+        
+    </script>
+    </body>
+</html>

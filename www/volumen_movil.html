@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=no">
+
+
+        <link rel="stylesheet" href="css/themes/vbc-theme.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
+        <link rel="stylesheet" type="text/css" href="fonts/fonts.css">     
+
+        <link href="css/visor_volumen_graphite.css" rel="stylesheet" type="text/css" />
+
+        <title>Vista Detalles</title>
+
+    </head>
+    <body>
+        <div data-role="page" data-theme="a">
+
+            <div data-role="header" data-theme="a">
+                <h1>Visor de volumen</h1>
+                <div class="menu_bar">
+                    <a href="#" class="bt-menu" id="showMenu"><span class="icon-menu"></span> Menu</a>
+                </div>
+            </div>
+
+            <div data-role="content">
+               
+
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+<div style="text-align: right">
+    <select data-inline="true" id="periodo" name="periodo" data-mini="true">
+        <option>Periodo ------------</option>
+        <option>1 Abr al 30 Abr 2015</option>
+    </select>
+</div>
+<div class="graphite">
+    <ul id="drilldown-1">
+        <li><a title="Edgardo" href="#" onClick="Href('volumen_movil_detalles.html')">Edgardo</a></li>
+        <li><a title="Edith" href="volumen_movil_detalles.html">Edith</a>
+            <ul>
+                <li><a title="Aarón" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Aarón</a></li>
+                <li><a title="Ariel" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Ariel</a></li>
+                <li><a title="Aniceto" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Aniceto</a></li>
+                <li><a title="Abril" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Abril</a></li>
+                <li><a title="Abelardo" href="volumen_movil_detalles.html">Abelardo</a>
+                    <ul>
+                        <li><a title="Xavier" href="volumen_movil_detalles.html">Xavier</a>
+                            <ul id="drilldown-1">
+                                <li><a title="William" href="volumen_movil_detalles.html">William</a>
+                                    <ul id="drilldown-1">
+                                        <li><a title="Abril" href="#" onClick="Href('volumen_movil_detalles.html')">Abril</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a title="Ximena" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Ximena</a></li>
+                        <li><a title="Xenxo" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Xenxo</a></li>
+                    </ul>
+                </li>
+                <li><a title="Adelaida" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Adelaida</a></li>
+                <li><a title="Adolfo" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Adolfo</a></li>
+            </ul>
+        </li>
+        <li><a title="Edmundo" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Edmundo</a></li>
+        <li><a title="Eduwiges" href="volumen_movil_detalles.html">Eduwiges</a>
+            <ul>
+                <li><a title="Hugo" href="volumen_movil_detalles.html" onClick="Href('volumen_movil_detalles.html')">Hugo</a></li>
+            </ul>
+        </li>
+        <li><a title="Everardo" href="volumen_movil_detalles.html" onClick="Href='volumen_movil_detalles.html'">Everardo</a></li>
+    </ul>
+</div>
+<div class="clear"></div>
+
+
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+<!-- ***************************************************** -->
+
+
+
+            </div>
+        </div>
+
+    <div id="deviceready" style="display: none">
+        <p class="event listening">Connecting to Device</p>
+        <p class="event received">Device is Ready</p>
+    </div>
+    
+    <!-- ********  MENÚ  ******** -->
+    <header>
+        <nav id="menu"></nav>
+    </header>
+    <section id="mascara"></section>
+    
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/classMenu.js"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+
+    <script type="text/javascript" src="js/visor_volumen_jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/visor_volumen_jquery.dcdrilldown.1.2.js"></script>
+
+    <script type="text/javascript"> 
+            //El registro al servicio de google lo hacemos automáticamente
+            app.initialize();            
+            menu.cargarMenu();
+    </script>
+    </body>
+</html>
