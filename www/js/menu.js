@@ -313,6 +313,9 @@ $(document).ready(function() {
     //Carrito de compras
     //
 
+    //Constantes
+    const IVA = 0.16;
+
     $.space = {
         //namespace para crear el arreglo de datos
         var1 : "",
@@ -455,6 +458,8 @@ $(document).ready(function() {
             }
             cont += 1;
         }
+        localStorage.removeItem('carrito_levantar');
+        localStorage.removeItem('carrito_subtotales');
         if(menu.checkRelativeRoot() == "carrito_compras.html") {
             $('#datos_carrito').html("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
         } else {
@@ -462,14 +467,111 @@ $(document).ready(function() {
         }
     });
 
+    //Guardar Método de envío;
+    if(menu.checkRelativeRoot() == "carrito_compras_levantar.html") {
+        if (window.localStorage.getItem('carrito_levantar')) {
+            //extrae datos almacenados y los convierte en array
+            var extraer = localStorage.getItem('carrito_levantar');
+            var resArray = extraer.split('","');
+
+            $('#metodo-envio').val(resArray[0]);
+            $("#tdMetodo-envio span").text($('#metodo-envio option:selected').text());
+            if (resArray[0] == 0) {
+                $('#paqueteria').val(resArray[1]);
+                $("#tdPaqueteria span").text($('#paqueteria option:selected').text());
+            }
+            else {
+                $('#sucursal').val(resArray[1]);
+                $("#tdSucursal span").text($('#sucursal option:selected').text());
+            }
+            $('#forma-pago').val(resArray[2]);
+            $("#tdForma-pago span").text($('#forma-pago option:selected').text());
+        }
+        //Metodo de envío
+        $('#trSucursal').hide(0);
+        $('#metodo-envio').change(function() {
+            var option = $(this).val();
+            if (option == 0) {
+                $('#trSucursal').hide(0);
+                $('#trPaqueteria').show(300);
+                console.log('mensajería ' + option);
+            }
+            else if (option == 1){
+                $('#trPaqueteria').hide(0);
+                $('#trSucursal').show(300);
+            }
+        });
+
+        var option = $('#metodo-envio').val();
+            if (option == 0) {
+                $('#trSucursal').hide(0);
+                $('#trPaqueteria').show(300);
+            }
+            else if (option == 1){
+                $('#trPaqueteria').hide(0);
+                $('#trSucursal').show(300);
+            }
+
+        $('.levantar-siguiente').click(function() {
+            var formaPago = $('#forma-pago').val();
+            if (formaPago == "Seleccione uno") {
+                app.showNotificactionVBC("Seleccione una forma de pago y oprima siguiente");
+            }
+            else {
+                //Guardar datos
+                var datos = "";
+                var metodoEnvio = $('#metodo-envio').val();
+                var sucursal = $('#sucursal').val();
+                var paqueteria = $('#paqueteria').val();
+                datos = metodoEnvio + "\",\"";
+                if (metodoEnvio == 0) {
+                    datos += paqueteria + "\",\"";
+                }
+                else {
+                    datos += sucursal + "\",\"";
+                }
+                datos += formaPago;
+            
+                localStorage.setItem('carrito_levantar', datos);
+                location.href='carrito_compras_generar.html';
+            }
+        });
+    }
+
+    if(menu.checkRelativeRoot() == "carrito_compras_generar.html") {
+        if (window.localStorage.getItem('carrito_subtotales')) {
+            var cadena = localStorage.getItem('carrito_subtotales');
+            var resArray = cadena.split('","');
+            var total_precio =      resArray[0];
+            var total_puntos =      resArray[1];
+            var total_vconsumible = resArray[2];
+            var cadenaSubtotal = '<div style="padding:3px; border: 1px solid silver; float: left">T. Puntos: ' + total_puntos + '</div>';
+            cadenaSubtotal += '<div style="padding:3px; border: 1px solid silver; float: left">T. V. Consumible: ' + total_vconsumible + '</div>';
+            cadenaSubtotal += '<div style="padding:3px; float: right">Total: $' + total_precio + '</div>';
+            $('#subtotales').html(cadenaSubtotal);
+            var cadenaInpuesto = total_precio * IVA;
+            cadenaInpuesto = '<div style="text-align: right">$' + Math.round(cadenaInpuesto*100)/100 + '</div>';
+            $('#impuesto').html(cadenaInpuesto);
+
+        }
+        else {
+            app.showNotificactionVBC('Algo salio mal al cargar los datos');
+        }
+    }
+
     // Cerrar pedido
-    //
     $('.cerrar_pedido').click(function() {
         if (!window.localStorage.getItem('datosCarrito0')) {
             app.showNotificactionVBC('No tienes pedidos que prcesar');
-            alert('dentro');
         }
         else {
+            var subtotal = $('#total_precio').text();
+            subtotal = subtotal.substring(1, subtotal.length);
+            var puntos = $('#total_puntos').text();
+            var vconsumible = $('#total_vconsumible').text();
+            var cadena = subtotal + "\",\"" + puntos + "\",\"" + vconsumible;
+            //Guarda los totales
+            localStorage.setItem('carrito_subtotales', cadena);
             location.href='carrito_compras_levantar.html';
         }
     });
@@ -552,4 +654,7 @@ $(document).ready(function() {
 //Redireccionar
 function Href(url) {
     location.href=url;
+}
+function Debug(element) {
+    console.log(element);
 }
