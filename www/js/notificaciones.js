@@ -225,9 +225,24 @@ var app = {
         }
     },
 
-    configuraciones: function(){
-        $('#showMenu').trigger('click');
-        window.location = "configuraciones.html";
+    //muestra un diálogo de confirmación para limpiar variables local de incripción y formularios de inscripción
+    showConfirmRemoveLocalInscription: function(){
+        navigator.notification.confirm(
+            'Usted tiene una inscripción pendiente ¿Desea continuar con ésta?',
+            app.onConfirmRemoveLocalInscription,
+            'Cancelar inscripción',
+            ['Sí, deseo continuar con esta inscripción', 'No, quiero iniciar una nueva inscripción']
+        );
+    },
+
+    onConfirmRemoveLocalInscription: function(buttonIndex){
+        if(buttonIndex == 1){
+            localStorage.removeItem('susc1Local');
+            localStorage.removeItem('susc2Local');
+            localStorage.removeItem('susc3Local');
+            localStorage.removeItem('susc4Local');
+            window.location.href = "suscriptores.html";
+        }
     },
 
     //muestra un diálogo de confirmación para redireccionar a la ruta indicada

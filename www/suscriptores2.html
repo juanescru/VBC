@@ -64,15 +64,12 @@
                                 <td id="tdFechaNacimiento">
                                     <select data-mini="true" data-inline="true" name="dia" id="dia">
                                         <option value="dia">Día</option>
-                                        <option value="1">01</option>
                                     </select>
                                     <select data-mini="true" data-inline="true" name="mes" id="mes">
                                         <option value="mes">Mes</option>
-                                        <option value="1">01</option>
                                     </select>
                                     <select data-mini="true" data-inline="true" name="ano" id="ano">
                                         <option value="ano">Año</option>
-                                        <option value="1">1970</option>
                                     </select>
                                     <input data-mini="true" type="text" name="txtLugarNacimiento" id="txtLugarNacimiento" placeholder="Lugar de Nacimiento">
                                 </td>    
@@ -81,8 +78,8 @@
                                 <th>Sexo:</th>
                                 <td id="tdSexo">
                                     <select data-mini="true" name="sexo" id="sexo">
-                                        <option value="1">Masculino</option>
-                                        <option value="2">Femenino</option>
+                                        <option value="0">Masculino</option>
+                                        <option value="1">Femenino</option>
                                     </select>
                                 </td>    
                             </tr>
@@ -248,6 +245,42 @@
             //El registro al servicio de google lo hacemos automáticamente
             app.initialize();            
             menu.cargarMenu();
+
+            function fillDay(){
+                var text = "";
+                for(var cont = 1; cont <= 31; cont++){
+                    if(cont < 10){
+                        text += '<option value="0'+ cont +'">0'+ cont +'</option>';
+                    }else{
+                        text += '<option value="'+ cont +'">'+ cont +'</option>';
+                    }
+                }
+                $('#dia').append(text);
+            }
+
+            function fillMonth(){
+                var text = "";
+                for(var cont = 1; cont <= 12; cont++){
+                    if(cont < 10){
+                        text += '<option value="0'+ cont +'">0'+ cont +'</option>';
+                    }else{
+                        text += '<option value="'+ cont +'">'+ cont +'</option>';
+                    }
+                }
+                $('#mes').append(text);
+            }
+
+            function fillYear(){
+                var text = "";
+                for(var cont = 1930; cont <= 2000; cont++){
+                    text += '<option value="'+ cont +'">'+ cont +'</option>';                    
+                }
+                $('#ano').append(text);
+            }        
+            
+            fillDay();
+            fillMonth();
+            fillYear();
         
     </script>
     </body>

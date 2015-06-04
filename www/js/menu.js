@@ -157,7 +157,7 @@ $(document).ready(function() {
     });
 
     //Carga los datos locales de los campos de cada formulario hasta que termine la inscripción
-    if(menu.checkRelativeRoot() == "suscriptores.html"){
+    if(menu.checkRelativeRoot() == "suscriptores.html"){        
         if(localStorage.getItem('susc1Local')){
             //Extraemos los datos almacenados y los convertimos en Array
             var extraer = localStorage.getItem('susc1Local');
@@ -302,7 +302,6 @@ $(document).ready(function() {
             $('#lblCP').text(ResArray2[6]);
             $('#lblPatrocinador').text(ResArray3[1]+ ", " +ResArray3[2]);
             $('#lblColocacion').text(ResArray3[1]+ ", " +ResArray3[2]);
-            alert(ResArray3);
         }
     }
 
