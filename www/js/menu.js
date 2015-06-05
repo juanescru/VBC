@@ -96,7 +96,7 @@ $(document).ready(function() {
         cadena += "\"" + telefono + "\",";
         cadena += "\"" + email + "\",";
         cadena += "\"" + kit + "\",";
-        if(kit == 2 || kit == 4 || kit == 6 || kit == 8 || kit == 10){
+        if(kit == 'PAQ1000MX' || kit == 'PAQ1001MX' || kit == 'PAQ1002MX' || kit == 'PAQ1003MX' || kit == 'PAQ1004MX'){
             cadena += "\"" + codigoAutorizacion + "\",";
         }      
         cadena += "\"" + metodoEnvio + "\",";
@@ -199,7 +199,8 @@ $(document).ready(function() {
 
             $('#kit').val(ResArray[12]);
             $("td#tdKit span").text($('#kit option:selected').text());
-            if($('#kit').val() == 2 || $('#kit').val() == 4 || $('#kit').val() == 6 || $('#kit').val() == 8 || $('#kit').val() == 10){
+            if($('#kit').val() == 'PAQ1000MX' || $('#kit').val() == 'PAQ1001MX' || $('#kit').val() == 'PAQ1002MX' ||
+             $('#kit').val() == 'PAQ1003MX' || $('#kit').val() == 'PAQ1004MX'){
 
                 $('tr#codigoAutorizacion').show(200);
 
@@ -585,7 +586,7 @@ $(document).ready(function() {
     $('#kit').change(function() {
         /* Act on the event */
         var opcion = $(this).val();
-        if(opcion == 2 || opcion == 4 || opcion == 6 || opcion == 8 || opcion == 10){
+        if(opcion == 'PAQ1000MX' || opcion == 'PAQ1001MX' || opcion == 'PAQ1002MX' || opcion == 'PAQ1003MX' || opcion == 'PAQ1004MX'){
             $('#codigoAutorizacion').show(200);
         }else{
             $('#codigoAutorizacion').hide(200);
