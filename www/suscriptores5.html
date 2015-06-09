@@ -46,58 +46,41 @@
                          <tbody>
                            <tr>
                              <th>Nombre:</th>
-                             <td>
+                             <td style="border:1px solid #087CCD;">
                                  <label for="Nombre" id="lblNombre"></label>
                              </td>
                            </tr>
-                           <tr style="background-color:#ffffff">
-                                <td colspan="2" style="height:10px;"></td>
-                            </tr>
                            <tr>
                              <th>Teléfono de Contacto:</th>
-                             <td>
+                             <td style="border:1px solid #087CCD;">
                                 <label for="Telefono" id="lblTelefono"></label>
                             </td>                                                   
                            </tr>
-                           <tr style="background-color:#ffffff">
-                                <td colspan="2" style="height:10px;"></td>
-                            </tr>
                             <tr>
                                 <th>Correo Electrónico:</th>
-                                <td>
+                                <td style="border:1px solid #087CCD;">
                                     <label for="Email" id="lblEmail"></label>
                                 </td>    
                             </tr>
-                            <tr style="background-color:#ffffff">
-                                <td colspan="2" style="height:10px;"></td>
-                            </tr>
                             <tr>
                                 <th>Dirección Fiscal:</th>
-                                <td id="tdEstado">
+                                <td id="tdEstado" style="border:1px solid #087CCD;">
                                     <label for="Calle" id="lblCalle"></label>
                                     <label for="Colonia" id="lblColonia"></label>
                                     <select data-mini="true" data-inline="true" name="estado" id="estado" disabled>
-                                        <option value="1">Aguascalientes</option>
-                                        <option value="2">México</option>
                                     </select>
                                     <label for="CP" id="lblCP"></label>
                                 </td>    
-                            </tr> 
-                            <tr style="background-color:#ffffff">
-                                <td colspan="2" style="height:10px;"></td>
                             </tr>
                             <tr>
                                 <th>Número y Nombre de Patrocinador:</th>
-                                <td>
+                                <td style="border:1px solid #087CCD;">
                                     <label for="Patrocinador" id="lblPatrocinador"></label>
                                 </td>    
                             </tr>
-                            <tr style="background-color:#ffffff">
-                                <td colspan="2" style="height:10px;"></td>
-                            </tr>
                             <tr>
                                 <th>Colocado Debajo de:</th>
-                                <td>
+                                <td style="border:1px solid #087CCD;">
                                     <label for="Colocacion" id="lblColocacion"></label>
                                 </td>    
                             </tr> 
@@ -143,10 +126,30 @@
     
     <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/connect.js"></script>
     <script type="text/javascript"> 
             //El registro al servicio de google lo hacemos automáticamente
             app.initialize();            
             menu.cargarMenu();
+            /*Devuelve conjunto de datos y carga SELECT de ESTADOS con los datos obtenidos*/
+            queryData('USP_VBC_GET_STATES', ['integer', '4'], fillStates);
+            function fillStates(dataSet){
+                var rec = dataSet[0];
+                var text = '';
+                for(var idx = 0; idx < dataSet.length; idx++){
+                    rec = dataSet[idx];
+                    text += '<option value="'+ rec["stateCode"] +'">'+ rec["state"] +'</option>';
+                };
+                $('#estado').append(text);
+                if(!localStorage.getItem("susc3Local")){
+                    $('#tdEstado span').text($('#estado option:selected').text());
+                }else{
+                    var extraer = localStorage.getItem("susc3Local");
+                    var array = extraer.split('","');
+                    $('#estado').val(array[5]);
+                    $('#tdEstado span').text($('#estado option:selected').text());
+                }
+            }
         
     </script>
     </body>

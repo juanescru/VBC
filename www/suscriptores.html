@@ -17,6 +17,8 @@
 
         <title>Inscripciones</title>
 
+        <!--<script type="text/javascript" src="js/connect.js"></script>-->        
+
     </head>
     <body>
 
@@ -48,13 +50,14 @@
                              <th>Lenguaje:</th>
                              <td id="tdLenguaje">
                                 <select  name="lenguaje" id="lenguaje">
-                                    <option value="1">Español</option>
-                                    <option value="2">English</option>
-                                </td>
+                                </select>
+                            </td>
                            </tr>
                            <tr>
                              <th>Número y Nombre de Patrocinador:</th>
-                             <td><label id="lblNumeroPatrocinador">12</label><label id="lblNombrePatrocinador">Martín, Sánchez Salazar</label></td>                                                    
+                             <td style="border:1px solid #087CCD;">
+                                <label id="lblNumeroPatrocinador">12</label><label id="lblNombrePatrocinador">Martín, Sánchez Salazar</label>
+                            </td>                                                    
                            </tr>
                             <tr>
                                 <td colspan="2"><p>De click al vinculo siguiente para bajar un archivo pdf del <a href="#dialogo" data-rel="dialog">CONTRATO DEL RIR</a></p></td>
@@ -1030,12 +1033,26 @@
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/connect.js"></script>
     <script type="text/javascript"> 
             //El registro al servicio de google lo hacemos automáticamente
             app.initialize();            
             menu.cargarMenu();
+            //Verifica si las variables locales existen para lanzar cuandro de confirmación 
+            if(localStorage.getItem('susc1Local') || localStorage.getItem('susc2Local') || localStorage.getItem('susc3Local') ||
+                localStorage.getItem('susc4Local')){
+                var confirmar = confirm("Tiene una inscripción pendiente ¿Desea continuar con ella?");
+                if(!confirmar){
+                    localStorage.removeItem('susc1Local');
+                    localStorage.removeItem('susc2Local');
+                    localStorage.removeItem('susc3Local');
+                    localStorage.removeItem('susc4Local');
+                }
+                //alert("bla bla");
+                //app.showNotificactionVBC("Hola");
+            }
     
-            //
+            //Valida si el CheckBox esta seleccionado para permitir el acceso a la siguiente pantalla
             function validarCB(){
                 var cbAcepto = document.getElementById("cbAcepto");
                 var btnContinuar = document.getElementById("btnContinuar");
@@ -1044,6 +1061,27 @@
                 }else{
                     app.showNotificactionVBC('Debes aceptar los términos del Contrato.');
                 }
+            }
+            /*Devuelve conjunto de datos y carga SELECT de lenguajes con los datos obtenidos*/
+            queryData('USP_VBC_GET_LANGUAGES', ['integer', ''], fillLanguages);
+            function fillLanguages(dataSet){
+                var rec = dataSet[0];
+                var text = '';
+                for(var idx = 0; idx < dataSet.length; idx++){
+                    rec = dataSet[idx];
+                    text += '<option value="'+ rec["code"] +'">'+ rec["name"] +'</option>';
+                    console.log(text);
+                };
+                $('#lenguaje').html(text);
+                if(!localStorage.getItem("susc1Local")){
+                    $('#tdLenguaje span').text($('#lenguaje option:selected').text());
+                }else{
+                    var extraer = localStorage.getItem("susc1Local");
+                    var array = extraer.split('","');
+                    $('#lenguaje').val(array[0]);
+                    $('#tdLenguaje span').text($('#lenguaje option:selected').text());
+                }
+            
             }
         
     </script>
