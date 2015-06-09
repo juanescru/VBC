@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
 
         <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
-        <link rel="stylesheet" href="css/styleSuscriptores.css" />
+        <link rel="stylesheet" href="css/styleSuscriptores.css" />      
         <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
         <link rel="stylesheet" type="text/css" href="fonts/fonts.css">               
 
@@ -32,7 +32,7 @@
         </div>
 
         <!-- Contenido de la página-->
-        <div data-role="content" id="contenedor" style="overflow-x: auto;">
+        <div data-role="content" id="contenedor">
 
             <div id="bienvenida">
                 <p>Por favor revise su información, si hay algo que desee cambiar presione el botón ANTERIOR para ir a la ventana correspondiente.</p>
@@ -91,12 +91,48 @@
                                 <td colspan="2">
                                     <a href="#" onclick="Href('suscriptores4.html')" data-inline="true" data-mini="true" data-role="button"><span class="icon-arrow-left"></span> ANTERIOR</a>
                                     <!--<a href="suscriptores3.html"  data-inline="true" data-mini="true" data-role="button">SIGUIENTE -></a>-->
-                                    <input type="button" id="btnSiguiente5" name="btnSiguiente4" data-inline="true" data-mini="true" onclick="" value="TERMINAR <span class='icon-point-right'></span>">
+                                    <input type="button" id="btnSiguiente5" name="btnSiguiente5" data-inline="true" data-mini="true" onclick="" value="TERMINAR <span class='icon-point-right'></span>">
                                 </td>
                             </tr>
                          </tbody>
                    </table>
                 </form>
+
+                <div id="bienvenida" style="margin-top:2em">
+                    <p>La incscripción incluye lo siguiente:</p>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th >Código del Artículo</th>
+                            <th >Descripción</th>
+                            <th >Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="datos_orden">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr align="right">
+                            <td colspan="2" style="background:#DAE5F1;">Subtotal</td>
+                            <td style="background:white;">$</td>
+                        </tr>
+                        <tr align="right">
+                            <td colspan="2" style="background:#DAE5F1;">Cargo por Envío</td>
+                            <td style="background:white;">$</td>
+                        </tr>
+                        <tr align="right">
+                            <td colspan="2" style="background:#DAE5F1;">Impuesto Total</td>
+                            <td style="background:white;">$</td>
+                        </tr>
+                        <tr align="right">
+                            <td colspan="2" style="background:#DAE5F1;">Total</td>
+                            <td style="background:white;">$</td>
+                        </tr>                        
+                    </tbody>
+                </table>
         
             </div>
 
