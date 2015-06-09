@@ -32,14 +32,15 @@ table{
 table th{
 	padding: 0% 1.5%;
 	border-radius: 5px;
+
 	box-shadow: 0px 0px 5px rgba(0,0,0,.7);
 	-webkit-box-shadow: 0px 0px 5px rgba(0,0,0,.7);
 }
 
 table td{
 	padding: 0% 1.5%;
-	background-color: #f7f7f7;
 	border-radius: 5px;
+	background-color: #f7f7f7;
 }
 
 table tbody tr th:first-child{
@@ -51,6 +52,12 @@ table tbody tr th:first-child{
 table tbody tr td:first-child{
 	background-color: #f7f7f7;
 	border: none;
+}
+
+table thead tr th{
+	text-align: right;
+	background-color: #5CD65C;
+	color: #2B3075;
 }
 
 /*label{
