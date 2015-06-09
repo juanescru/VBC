@@ -13,9 +13,57 @@
         <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
         <link rel="stylesheet" type="text/css" href="fonts/fonts.css">
         <link rel="stylesheet" type="text/css" href="css/carrito_compras.css">
-
         <title>Levantar pedido</title>
+        <script type="text/javascript" src="js/connect.js">
+            //queryData(STORED_PROCEDURE, ['integer','1','string','abc','',1], function)
+        </script>
+        <script type="text/javascript">
+            window.addEventListener('load',function() {
+                //////////////////////////////////////////////////////
+                /******* Llena combobox de Centro Autorizado ********/
+                /*queryData('USP_VBC_GET_USER_PROFILE_DATA', ['integer','12'], profileData);
+                function profileData(dataSet) {
+                    showWaitLoader('dataSet');
+                    var rec = dataSet[0];
+                    var tabla = '<table>';
+                    for(i = 0; i < dataSet.length; i++){
+                        rec = dataSet[i];
+                        tabla += '<tr>';
+                        tabla += '<td class="titulos">Nombre:</td><td>' + rec['shipName'] + '</td>';
+                        tabla += '</tr>';
+                        tabla += '<tr>';
+                        tabla += '<td class="titulos">País:</td><td><address>' + rec['mailingCountry'] + '</address></td>';
+                        tabla += '</tr>';
+                        tabla += '<tr>';
+                        tabla += '<td class="titulos">Calle/ Número:</td><td><address>' + rec['mailingAddressLine1'] + '</address></td>';
+                        tabla += '</tr>';
+                        tabla += '<tr>';
+                        tabla += '<td class="titulos">Ciudad/ Municipio:</td><td><address>' + rec['mailingAddressLine2'] + '</address></td>';
+                        tabla += '</tr>';
+                        tabla += '<tr>';
+                        tabla += '<td class="titulos">Ciudad:</td><td><address>' + rec['mailingCity'] + '</address></td>';
+                        tabla += '</tr>';
+                        tabla += '<tr>';
+                        tabla += '<td class="titulos">Estado / C.P.:</td><td><address>' +   rec['mailingState'] + '/ ' + 
+                                                                                            rec['mailingPostalCode'] + '</address></td>';
+                        tabla += '</tr>';
+                        tabla += '<tr>';
+                        tabla += '<td class="titulos">Instrucciones Especiales</td><td><input type="text" id="instrucciones" data-mini="true" /></td>';
+                        tabla += '</tr>';
+                    }
+                    tabla += '</table>';
+                    document.getElementById('dataSet').innerHTML = tabla;
+                }*/
+                /////////////////////////////////////////////////////
+                /************* Calcula Costo de envío **************/
+                queryData('USP_VBC_GET_SHIPPING_COST_SIMPLE', ['float','15','integer','2','string','COL'], calculaEnvio);
+                function calculaEnvio(dataSet) {
+                    var rec = dataSet[0];
+                    //Debug(rec);
+                }
+            });
 
+        </script>
 
     </head>
     <body>
@@ -55,37 +103,8 @@
                     <table>
                         <tr>
                             <td class="descrip">Dirección</td>
-                            <td class="subtabla">
-                                <table>
-                                    <tr>
-                                        <td class="titulos">Nombre:</td>
-                                        <td>---------</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="titulos">País:</td>
-                                        <td><address>---------</address></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="titulos">Calle / Número:</td>
-                                        <td><address>---------</address></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="titulos">Ciudad / Municipio:</td>
-                                        <td><address>---------</address></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="titulos">Ciudad:</td>
-                                        <td><address>---------</address></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="titulos">Estado / C.P.:</td>
-                                        <td><address>---------</address></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="titulos">Instrucciones Especiales:</td>
-                                        <td><input id="instrucciones" data-mini="true" /></input></td>
-                                    </tr>
-                                </table>
+                            <td class="subtabla" id="dataSet">
+                                <!-- Carga tabla desde la base -->
                             </td>
                         </tr>
                     </table>

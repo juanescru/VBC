@@ -39,10 +39,8 @@ $(document).ready(function() {
     //
     //Termina volumen móvil
 
-    //
     //Inscripciones
-
-
+    //
     $('#btnContinuar').click(function() {
         //Capturo el valor de los campos a través de su id
         var lenguaje = $('#lenguaje').val();
@@ -469,32 +467,13 @@ $(document).ready(function() {
 
     //Guardar Método de envío;
     if(menu.checkRelativeRoot() == "carrito_compras_levantar.html") {
-        if (window.localStorage.getItem('carrito_levantar')) {
-            //extrae datos almacenados y los convierte en array
-            var extraer = localStorage.getItem('carrito_levantar');
-            var resArray = extraer.split('","');
 
-            $('#metodo-envio').val(resArray[0]);
-            $("#tdMetodo-envio span").text($('#metodo-envio option:selected').text());
-            if (resArray[0] == 0) {
-                $('#paqueteria').val(resArray[1]);
-                $("#tdPaqueteria span").text($('#paqueteria option:selected').text());
-            }
-            else {
-                $('#sucursal').val(resArray[1]);
-                $("#tdSucursal span").text($('#sucursal option:selected').text());
-            }
-            $('#forma-pago').val(resArray[2]);
-            $("#tdForma-pago span").text($('#forma-pago option:selected').text());
-        }
         //Metodo de envío
-        $('#trSucursal').hide(0);
         $('#metodo-envio').change(function() {
             var option = $(this).val();
-            if (option == 0) {
+            if (option == 2) {
                 $('#trSucursal').hide(0);
                 $('#trPaqueteria').show(300);
-                console.log('mensajería ' + option);
             }
             else if (option == 1){
                 $('#trPaqueteria').hide(0);
@@ -502,19 +481,11 @@ $(document).ready(function() {
             }
         });
 
-        var option = $('#metodo-envio').val();
-            if (option == 0) {
-                $('#trSucursal').hide(0);
-                $('#trPaqueteria').show(300);
-            }
-            else if (option == 1){
-                $('#trPaqueteria').hide(0);
-                $('#trSucursal').show(300);
-            }
+        
 
         $('.levantar-siguiente').click(function() {
             var formaPago = $('#forma-pago').val();
-            if (formaPago == "Seleccione uno") {
+            if (formaPago == "0") {
                 app.showNotificactionVBC("Seleccione una forma de pago y oprima siguiente");
             }
             else {
@@ -524,7 +495,7 @@ $(document).ready(function() {
                 var sucursal = $('#sucursal').val();
                 var paqueteria = $('#paqueteria').val();
                 datos = metodoEnvio + "\",\"";
-                if (metodoEnvio == 0) {
+                if (metodoEnvio == 2) {
                     datos += paqueteria + "\",\"";
                 }
                 else {

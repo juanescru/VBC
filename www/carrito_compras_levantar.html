@@ -15,7 +15,110 @@
         <link rel="stylesheet" type="text/css" href="css/carrito_compras.css">
 
         <title>Levantar pedido</title>
-
+        <script type="text/javascript" src="js/connect.js">
+            //queryData(STORED_PROCEDURE, ['integer','1','string','abc','',1], function)
+        </script>
+        <script type="text/javascript">
+            window.addEventListener('load',function() {
+                /////////////////////////////////////////////////////
+                /****** Llena combobox de Centro Autorizado ********/
+                queryData('USP_VBC_GET_WAREHOUSE_BY_COUNTRY', ['integer','4'], centroAutorizado);
+                function centroAutorizado(dataSet) {
+                    var rec = dataSet[0];
+                    var sucursal = document.getElementById('sucursal');
+                    for(var idx = 0; idx < dataSet.length; idx++){
+                        var options = document.createElement('option');
+                        rec = dataSet[idx];
+                        options.text = rec['description'];
+                        options.value = rec['warehouseId'];
+                        sucursal.options.add(options);
+                    }
+                    var spans = document.querySelector('#tdSucursal div div span');
+                    spans.innerHTML = sucursal.options[sucursal.selectedIndex].text;
+                    ocultar();
+                }
+                //////////////////////////////////////////////
+                /****** Llena combobox de Mensajería ********/
+                queryData('USP_VBC_GET_CARRIERS', ['integer','4'], mensajeria);
+                function mensajeria(dataSet) {
+                    var rec = dataSet[0];
+                    var paqueteria = document.getElementById('paqueteria');
+                    for(var idx = 0; idx < dataSet.length; idx++){
+                        var options = document.createElement('option');
+                        rec = dataSet[idx];
+                        options.text = rec['description'];
+                        options.value = rec['carrierId'];
+                        paqueteria.options.add(options);
+                    }
+                    var spans = document.querySelector('#tdPaqueteria div div span');
+                    spans.innerHTML = paqueteria.options[paqueteria.selectedIndex].text;
+                }
+                //////////////////////////////////////////////////
+                /****** Llena combobox de formas de pago ********/
+                queryData('USP_VBC_GET_PAY_METHOD', ['integer','1','integer','4'], formaPago);
+                function formaPago(dataSet) {
+                    var rec = dataSet[0];
+                    var forma_pago = document.getElementById('forma-pago');
+                    for(var idx = 0; idx < dataSet.length; idx++){
+                        var options = document.createElement('option');
+                        rec = dataSet[idx];
+                        options.text = rec['description'];
+                        options.value = rec['payMethodId'];
+                        forma_pago.options.add(options);
+                    }
+                    var spans = document.querySelector('#tdForma-pago div div span');
+                    spans.innerHTML = forma_pago.options[forma_pago.selectedIndex].text;
+                }
+                ///////////////////////////////////////////////////
+                /******* Llena combobox de metodo de envío *******/
+                queryData('USP_VBC_GET_SHIPMENT_METHODS', ['integer','','integer','4'], metodoEnvio);
+                function metodoEnvio(dataSet) {
+                    var rec = dataSet[0];
+                    var metodo_envio = document.getElementById('metodo-envio');
+                    for(var idx = 0; idx < dataSet.length; idx++){
+                        var options = document.createElement('option');
+                        rec = dataSet[idx];
+                        options.text = rec['name'];
+                        options.value = rec['shipMethodId'];
+                        metodo_envio.options.add(options);
+                    }
+                    var spans = document.querySelector('#tdMetodo-envio div div span');
+                    spans.innerHTML = metodo_envio.options[metodo_envio.selectedIndex].text;
+                    //Muestra si hay datos guardados
+                    if (window.localStorage.getItem('carrito_levantar')) {
+                        //extrae datos almacenados y los convierte en array
+                        var extraer = localStorage.getItem('carrito_levantar');
+                        var resArray = extraer.split('","');
+                        document.getElementById('metodo-envio').value = resArray[0];
+                        document.querySelector('#tdMetodo-envio span').innerHTML = document.getElementById('metodo-envio').options[document.getElementById('metodo-envio').selectedIndex].text;
+                        if (resArray[0] == 2) {
+                            document.getElementById('paqueteria').value = resArray[1];
+                            document.querySelector('#tdPaqueteria span').innerHTML = document.getElementById('paqueteria').options[document.getElementById('paqueteria').selectedIndex].text;
+                        }
+                        else {
+                            document.getElementById('sucursal').value = resArray[1];
+                            document.querySelector('#tdSucursal span').innerHTML = document.getElementById('sucursal').options[document.getElementById('sucursal').selectedIndex].text;
+                        }
+                        document.getElementById('forma-pago').value = resArray[2];
+                        document.querySelector('#tdForma-pago span').innerHTML = document.getElementById('forma-pago').options[document.getElementById('forma-pago').selectedIndex].text;
+                    }
+                    ocultar();
+                }//Termina función
+                function ocultar() {
+                    //Muestra u oculta centro autorizado o mensajería según sea el caso
+                    var option = document.getElementById('metodo-envio').value;
+                    //var option = $('#metodo-envio').val();
+                    if (option == 2) {
+                        $('#trSucursal').hide(0);
+                        $('#trPaqueteria').show(300);
+                    }
+                    else if (option == 1){
+                        $('#trPaqueteria').hide(0);
+                        $('#trSucursal').show(300);
+                    }
+                }
+            });
+        </script>
 
     </head>
     <body>
@@ -38,8 +141,7 @@
                             <td class="descrip">Metodo de envío</td>
                             <td id="tdMetodo-envio">
                                 <select id="metodo-envio" data-mini="true">
-                                    <option value="0">Mensajería</option>
-                                    <option value="1">Ocurre</option>
+                                    <!-- desde la base -->
                                 </select>
                             </td>
                         </tr>
@@ -47,17 +149,16 @@
                             <td class="descrip">Paquetería</td>
                             <td id="tdPaqueteria">
                                 <select id="paqueteria" data-mini="true">
-                                    <option>Estafeta</option>
+                                    <!-- desde la base -->
                                 </select>
                             </td>
                         </tr>
                         <tr id="trSucursal">
                             <td class="descrip">Centro Autorizado</td>
                             <td id="tdSucursal">
-                                <select id="sucursal" data-mini="true">
-                                    <option>Jalisco</option>
-                                    <option>Veracruz</option>
-                                    <option>Guanajuato</option>
+                                <select id="sucursal" data-mini="true" name="sucursal">
+                                    <option value="0" selected>--Seleccione--</option>
+                                    <!-- desde la base -->
                                 </select>
                             </td>
                         </tr>
@@ -65,9 +166,7 @@
                             <td class="descrip">Forma de pago</td>
                             <td id="tdForma-pago">
                                 <select id="forma-pago" data-mini="true">
-                                    <option>Seleccione uno</option>
-                                    <option>Depósito</option>
-                                    <option>Multipagos Bancomer</option>
+                                    <option value="0">--Seleccione--</option>
                                 </select>
                             </td>
                         </tr>

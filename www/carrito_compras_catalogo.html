@@ -15,7 +15,43 @@
         <link rel="stylesheet" type="text/css" href="css/carrito_compras.css">
 
         <title>Carrito de compras</title>
+        <script type="text/javascript" src="js/connect.js">
+            //queryData(STORED_PROCEDURE, ['integer','1','string','abc','',1], function)
+        </script>
 
+        <script type="text/javascript">
+            window.addEventListener('load',function() {
+                /////////////////////////////////////////////////
+                /******** Llena combobox de Artículos *********/
+                queryData('USP_VBC_GET_ITEM_QUICK_CATALOG', ['integer','2','integer','1', 'integer','12'], catalog);
+                function catalog(dataSet) {
+                    var rec = dataSet[0];
+                    var text = '';
+                    for(var idx = 0; idx < dataSet.length; idx++){
+                        rec = dataSet[idx];
+                        text += '<option value="' + rec['itemGroupId'] + '">' + rec['groupName'] + '</option>' +"\n";
+                    }
+                    Debug(rec);
+                }
+                /////////////////////////////////////////////////
+                /******** Llena combobox de categorías *********/
+                queryData('USP_VBC_GET_ITEM_CATALOG', ['integer','10','integer','0', 'integer','13','integer','7','string','','integer','0','integer','0','integer','4'], categorias);
+                function categorias(dataSet) {
+                    var select_categoria = document.getElementById('categoria');
+                    var rec = dataSet[0];
+                    for(var idx = 0; idx < dataSet.length; idx++){
+                        rec = dataSet[idx];
+                        var options = document.createElement('option');
+                        options.text = rec['groupName'];
+                        options.value = rec['itemGroupId'];
+                        select_categoria.options.add(options);
+                    }
+                    var spans = document.querySelector('#select-categoria div div span');
+                    spans.innerHTML = select_categoria.options[select_categoria.selectedIndex].text;
+                }
+
+            });
+        </script>
 
     </head>
     <body>
@@ -33,19 +69,7 @@
                 <!-- ***************************************************** -->
                 <div id="select-categoria">
                     <select data-mini="true" name="categoria" id="categoria">
-                        <option>Seleccionar Categoría</option>
-                        <option>Artículo Promocional</option>
-                        <option>Balance y Equilibrio</option>
-                        <option>Desintoxicación</option>
-                        <option>Herramientas de venta</option>
-                        <option>Nutrición Dirigida</option>
-                        <option>Nutrición Piel</option>
-                        <option>Nutrición Integrada</option>
-                        <option>Papelería</option>
-                        <option>Kits</option>
-                        <option>Promoción del Mes</option>
-                        <option>Eventos</option>
-                        <option>Extras</option>
+                        <!-- Código de la base -->
                     </select>
                     <table align="center">
                         <tbody>

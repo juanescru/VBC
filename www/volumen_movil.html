@@ -7,18 +7,58 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=no">
 
-
         <link rel="stylesheet" href="css/themes/vbc-theme.min.css" />
         <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
 
         <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
         <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
         <link rel="stylesheet" type="text/css" href="fonts/fonts.css">     
-
         <link href="css/visor_volumen_graphite.css" rel="stylesheet" type="text/css" />
-
         <title>Vista Detalles</title>
+        <script type="text/javascript" src="js/connect.js">
+            //queryData(STORED_PROCEDURE, ['integer','1','string','abc','',1], function)
+        </script>
+        <script type="text/javascript">
+            //Llena combobox de periodos
+            queryData('USP_VBC_GET_PERIODS', ['integer','1','integer','0'], periodos);
+            function periodos(dataSet) {
+                var rec = dataSet[0];
+                var text = '';
+                text += '<option value="0">Seleccione una opción</option>';
+                for(var idx = 0; idx < dataSet.length; idx++){
+                    rec = dataSet[idx];
+                    text += '<option value="' + rec['periodId'] + '">' + rec['description'] + '</option>' + "\n";
+                }
+                $('#periodo').html(text);
+                $('#divPeriodo span').text($('#periodo option:selected').text());
+            }
+            //Llena tabla de visor de volumen
+            /*queryData('USP_VBC_GET_MATRIX_VIEWER', ['integer','12','integer','0','integer','0','integer','16','integer','1'], visor);
+            function visor(dataSet) {
+                var rec = dataSet[0];
+                var recy = dataSet[0];
+                var text = '';
+                var boole = false;
+                var como = "";
 
+                for(var idx = 0; idx < dataSet.length; idx++){
+                    rec = dataSet[idx];
+                    como += "*";
+                    text += como;
+                    //text += '<option value="' + rec['userId'] + '">' + rec['userIdUp'] + '</option>' + "\n";
+                    for(var idy = idx; idy < dataSet.length; idy++){
+                        recy = dataSet[idy]
+                        if (rec['userId'] == recy['userIdUp']) {
+                            text += recy['name'] + "\n";
+                        }
+                    }
+                }
+                console.log(text);
+                $('#drilldown-1').html(text);
+                //$('#divPeriodo span').text($('#periodo option:selected').text());
+            }*/
+
+        </script>
     </head>
     <body>
         <div data-role="page" data-theme="a">
@@ -36,10 +76,8 @@
 <!-- ***************************************************** -->
 <!-- ***************************************************** -->
 <!-- ***************************************************** -->
-<div style="text-align: right">
+<div style="text-align: right" id='divPeriodo'>
     <select data-inline="true" id="periodo" name="periodo" data-mini="true">
-        <option>Periodo ------------</option>
-        <option>1 Abr al 30 Abr 2015</option>
     </select>
 </div>
 <div class="graphite">
