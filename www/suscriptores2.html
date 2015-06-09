@@ -125,7 +125,7 @@
                                     <select data-inline="true" data-mini="true" name="centroAutorizado" id="centroAutorizado">
                                         <option>Seleccione</option>
                                     </select>
-                                    <a style="background:rgba(8,124,205,1) !important; color: rgba(255,255,255,.8); font-size:8px;padding:1.5px;" data-role="button" data-inline="true" href="#direccion" data-rel="dialog">Dirección ></a>
+                                    <a style="background:rgba(8,124,205,1) !important; color: rgba(255,255,255,.8); font-size:8px;padding:1.5px;" data-role="button" data-inline="true" data-rel="dialog" id="btnDireccion">Dirección ></a>
                                 </td>    
                             </tr>
                             <tr id="paqueteriaTr" style="display:none;">
@@ -172,234 +172,29 @@
         <nav id="menu"></nav>
     </header>
     <section id="mascara"></section>
-    
-    <!--Inicia cuadro de dialogo para direcciones-->
-    <div data-role="page" data-theme="a" id="direccion">
-
-        <!--Encabezado del cuadro de dialogo-->
-        <div data-role="header" data-theme="a">
-            <h1>Dirección</h1>
-        </div><!--Termina Encabezado-->
-        
-        <!--Inicia contenido-->
-        <div data-role="content" data-theme="a">
-            <div id="contenidoDireccion">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th colspan="2" style="text-align:center">Aguascalientes</th>
-                        </tr>
-                        <tr>
-                            <th>Calle y Núm:</th>
-                            <td>Av Lópezx Mateos Oriente No.445 y 447 Esq. Jose</td>
-                        </tr>
-                        <tr>
-                            <th>Colonia:</th>
-                            <td>El encino</td>
-                        </tr>
-                        <tr>
-                            <th>Ciudad:</th>
-                            <td>Aguascalientes</td>
-                        </tr>
-                        <tr>
-                            <th>Estado:</th>
-                            <td>AGS</td>
-                        </tr>
-                        <tr>
-                            <th>CP:</th>
-                            <td>20240</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <a href="#inscripciones" data-rel="back" data-role="button">Aceptar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--Termina Contenido-->
-
-    </div><!--Termina Cuadro de dialogo-->
 
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/classMenu.js"></script>
-    <script type="text/javascript" src="js/suscriptores.js"></script>
+    <!--<script type="text/javascript" src="js/suscriptores.js"></script>-->
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/validaciones.js"></script>
     
     <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/connect.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/combosSuscriptores.js"></script>
     <script type="text/javascript"> 
             //El registro al servicio de google lo hacemos automáticamente
             app.initialize();            
-            menu.cargarMenu();
-
-            /*Devuelve conjunto de datos y carga SELECT de KITS con los datos obtenidos*/
-            queryData('USP_VBC_GET_ITEMS_KITS', ['integer', '4'], fillKits);
-
-            function fillKits(dataSet){
-                var rec = dataSet[0];
-                var text = '';
-
-                for(var idx = 0; idx < dataSet.length; idx++){
-                    rec = dataSet[idx];
-                    text += '<option value="'+ rec["itemCode"] +'">'+ rec["description"] +'</option>';
-                };
-
-                $('#kit').html(text);
-
-                if(!localStorage.getItem("susc2Local")){
-                    $('#tdKit span').text($('#kit option:selected').text());
-                }else{
-                    var extraer = localStorage.getItem("susc2Local");
-                    var array = extraer.split('","');
-
-                    $('#kit').val(array[12]);
-                    $('#tdKit span').text($('#kit option:selected').text());
-                }
-            
-            }
-
-            /*Devuelve conjunto de datos y carga SELECT de METODOS DE ENVÍO con los datos obtenidos*/
-            queryData('USP_VBC_GET_WAREHOUSE_BY_COUNTRY', ['integer', '4'], fillWarehouses);
-
-            function fillWarehouses(dataSet){
-                var rec = dataSet[0];
-                var text = '';
-
-                for(var idx = 0; idx < dataSet.length; idx++){
-                    rec = dataSet[idx];
-                    text += '<option value="'+ rec["warehouseId"] +'">'+ rec["description"] +'</option>';
-                };
-
-                $('#centroAutorizado').append(text);               
-
-                if(!localStorage.getItem("susc2Local")){
-                    //$('#tdCentroAutorizado span').text($('#CentroAutorizado option:selected').text());
-                }/*else{
-                    var extraer = localStorage.getItem("susc2Local");
-                    var array = extraer.split('","');
-
-                    $('#kit').val(array[12]);
-                    $('#tdKit span').text($('#kit option:selected').text());
-                }*/
-            }
-
-            /*Devuelve conjunto de datos y carga SELECT de PAQUETERÍAS con los datos obtenidos*/
-            queryData('USP_VBC_GET_CARRIERS', ['integer', '4'], fillCarriers);
-
-            function fillCarriers(dataSet){
-                var rec = dataSet[0];
-                var text = '';
-
-                for(var idx = 0; idx < dataSet.length; idx++){
-                    rec = dataSet[idx];
-                    text += '<option value="'+ rec["carrierId"] +'">'+ rec["description"] +'</option>';
-                };
-
-                $('#paqueteria').html(text);
-
-                if(!localStorage.getItem("susc2Local")){
-                    $('#tdPaqueteria span').text($('#paqueteria option:selected').text());
-                }/*else{
-                    var extraer = localStorage.getItem("susc2Local");
-                    var array = extraer.split('","');
-
-                    $('#kit').val(array[12]);
-                    $('#tdKit span').text($('#kit option:selected').text());
-                }*/
-            
-            }
-
-            /*Devuelve conjunto de datos y carga SELECT de MÉTODO DE PAGO con los datos obtenidos*/
-            queryData('USP_VBC_GET_PAY_METHOD', ['integer', '1', 'integer', '4'], fillPayMethod);
-
-            function fillPayMethod(dataSet){
-                var rec = dataSet[0];
-                var text = '';                
-
-                for(var idx = 0; idx < dataSet.length; idx++){
-                    rec = dataSet[idx];
-                    text += '<option value="'+ rec["payMethodId"] +'">'+ rec["description"] +'</option>';
-                };
-
-                $('#metodoPago').html(text);
-
-                if(!localStorage.getItem("susc2Local")){
-                    $('#tdMetodoPago span').text($('#metodoPago option:selected').text());
-                }/*else{
-                    var extraer = localStorage.getItem("susc2Local");
-                    var array = extraer.split('","');
-
-                    $('#kit').val(array[12]);
-                    $('#tdKit span').text($('#kit option:selected').text());
-                }*/
-            
-            }
-
-            /*Devuelve conjunto de datos y carga SELECT de METODOS DE ENVÍO con los datos obtenidos*/
-            queryData('USP_VBC_GET_SHIPMENT_METHODS', ['integer', '', 'integer', '4'], fillShipmentMethods);
-
-            function fillShipmentMethods(dataSet){
-                var rec = dataSet[0];
-                var text = '';
-
-                for(var idx = 0; idx < dataSet.length; idx++){
-                    rec = dataSet[idx];
-                    text += '<option value="'+ rec["shipMethodId"] +'">'+ rec["name"] +'</option>';
-                };
-
-                $('#metodoEnvio').append(text);
-
-                if(!localStorage.getItem("susc2Local")){
-                    //$('#tdMetodoEnvio span').text($('#metodoEnvio option:selected').text());
-                }/*else{
-                    var extraer = localStorage.getItem("susc2Local");
-                    var array = extraer.split('","');
-
-                    $('#kit').val(array[12]);
-                    $('#tdKit span').text($('#kit option:selected').text());
-                }*/
-            
-            }
-
-            function fillDay(){
-                var text = "";
-                for(var cont = 1; cont <= 31; cont++){
-                    if(cont < 10){
-                        text += '<option value="0'+ cont +'">0'+ cont +'</option>';
-                    }else{
-                        text += '<option value="'+ cont +'">'+ cont +'</option>';
-                    }
-                }
-                $('#dia').append(text);
-            }
-
-            function fillMonth(){
-                var text = "";
-                for(var cont = 1; cont <= 12; cont++){
-                    if(cont < 10){
-                        text += '<option value="0'+ cont +'">0'+ cont +'</option>';
-                    }else{
-                        text += '<option value="'+ cont +'">'+ cont +'</option>';
-                    }
-                }
-                $('#mes').append(text);
-            }
-
-            function fillYear(){
-                var text = "";
-                for(var cont = 1930; cont <= 2000; cont++){
-                    text += '<option value="'+ cont +'">'+ cont +'</option>';                    
-                }
-                $('#ano').append(text);
-            }        
-            
+            menu.cargarMenu(); 
+                    
+            //Carga combo días
             fillDay();
+            //Carga combo meses
             fillMonth();
+            //Carga combo años
             fillYear();
         
     </script>

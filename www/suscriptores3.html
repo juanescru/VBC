@@ -48,7 +48,7 @@
                              <th>País:</th>
                              <td id="tdPais">
                                  <select data-mini="true" name="pais" id="pais">
-                                     <option value="1">MEXICO</option>
+                                     <option value="MX" title="4">MEXICO</option>
                                  </select>
                              </td>
                            </tr>
@@ -75,8 +75,7 @@
                                 <th>Estado</th>
                                 <td id="tdEstado">
                                     <select data-mini="true" name="estado" id="estado">
-                                        <option value="1">AGUASCALIENTES</option>
-                                        <option value="2">MEXICO</option>
+                                        <option>Seleccione uno</option>
                                     </select>
                                 </td>    
                             </tr>
@@ -130,10 +129,37 @@
     
     <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/connect.js"></script>
     <script type="text/javascript"> 
             //El registro al servicio de google lo hacemos automáticamente
             app.initialize();            
             menu.cargarMenu();
+
+            /*Devuelve conjunto de datos y carga SELECT de ESTADOS con los datos obtenidos*/
+            queryData('USP_VBC_GET_STATES', ['integer', '4'], fillStates);
+
+            function fillStates(dataSet){
+                var rec = dataSet[0];
+                var text = '';
+
+                for(var idx = 0; idx < dataSet.length; idx++){
+                    rec = dataSet[idx];
+                    text += '<option value="'+ rec["stateCode"] +'">'+ rec["state"] +'</option>';
+                };
+
+                $('#estado').append(text);
+
+                /*if(!localStorage.getItem("susc2Local")){
+                    $('#tdPaqueteria span').text($('#paqueteria option:selected').text());
+                }else{
+                    var extraer = localStorage.getItem("susc2Local");
+                    var array = extraer.split('","');
+
+                    $('#kit').val(array[12]);
+                    $('#tdKit span').text($('#kit option:selected').text());
+                }*/
+
+            }
         
     </script>
     </body>
