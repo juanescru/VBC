@@ -131,24 +131,31 @@
             //El registro al servicio de google lo hacemos automáticamente
             app.initialize();            
             menu.cargarMenu();
+
             /*Devuelve conjunto de datos y carga SELECT de ESTADOS con los datos obtenidos*/
             queryData('USP_VBC_GET_STATES', ['integer', '4'], fillStates);
+
             function fillStates(dataSet){
                 var rec = dataSet[0];
                 var text = '';
+
                 for(var idx = 0; idx < dataSet.length; idx++){
                     rec = dataSet[idx];
                     text += '<option value="'+ rec["stateCode"] +'">'+ rec["state"] +'</option>';
                 };
+
                 $('#estado').append(text);
+
                 if(!localStorage.getItem("susc3Local")){
                     $('#tdEstado span').text($('#estado option:selected').text());
                 }else{
                     var extraer = localStorage.getItem("susc3Local");
                     var array = extraer.split('","');
+
                     $('#estado').val(array[5]);
                     $('#tdEstado span').text($('#estado option:selected').text());
                 }
+
             }
         
     </script>

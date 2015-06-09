@@ -64,15 +64,12 @@
                                 <td id="tdFechaNacimiento">
                                     <select data-mini="true" data-inline="true" name="dia" id="dia">
                                         <option value="dia">Día</option>
-                                        <option value="1">01</option>
                                     </select>
                                     <select data-mini="true" data-inline="true" name="mes" id="mes">
                                         <option value="mes">Mes</option>
-                                        <option value="1">01</option>
                                     </select>
                                     <select data-mini="true" data-inline="true" name="ano" id="ano">
                                         <option value="ano">Año</option>
-                                        <option value="1">1970</option>
                                     </select>
                                     <input data-mini="true" type="text" name="txtLugarNacimiento" id="txtLugarNacimiento" placeholder="Lugar de Nacimiento">
                                 </td>    
@@ -81,8 +78,8 @@
                                 <th>Sexo:</th>
                                 <td id="tdSexo">
                                     <select data-mini="true" name="sexo" id="sexo">
-                                        <option value="1">Masculino</option>
-                                        <option value="2">Femenino</option>
+                                        <option value="0">Masculino</option>
+                                        <option value="1">Femenino</option>
                                     </select>
                                 </td>    
                             </tr>
@@ -105,11 +102,7 @@
                                 <th>Kit de Inscripción:</th>
                                 <td id="tdKit">
                                     <div class="selectGde">
-                                        <select data-mini="true" name="kit" id="kit">
-                                            <option value="1">PAQUETE DE INSCRIPCIÓN</option>                                        
-                                            <option value="2">PAQUETE DE INSCRIPCIÓN SERIALIZABLE</option>
-                                            <option value="3">PAQ. INVERSIÓN 1 - INVERSIÓN LIGERA</option>
-                                            <option value="4">PAQ. EMPRESARIAL 1 - INVERSIÓN LIGERA SERIALIZABLE</option>
+                                        <select data-mini="true" name="kit" id="kit">                                            
                                         </select>
                                     </div>
                                 </td>    
@@ -123,8 +116,6 @@
                                 <td id="tdMetodoEnvio">
                                     <select data-mini="true" name="metodoEnvio" id="metodoEnvio">
                                         <option>Selecciona uno</option>
-                                        <option value="1">Ocurre</option>
-                                        <option value="2">Mensajería</option>
                                     </select>
                                 </td>    
                             </tr>
@@ -133,16 +124,14 @@
                                 <td id="tdCentroAutorizado">
                                     <select data-inline="true" data-mini="true" name="centroAutorizado" id="centroAutorizado">
                                         <option>Seleccione</option>
-                                        <option value="1">Ecatepec</option>
                                     </select>
-                                    <a style="background:rgba(8,124,205,1) !important; color: rgba(255,255,255,.8); font-size:8px;padding:1.5px;" data-role="button" data-inline="true" href="#direccion" data-rel="dialog">Dirección ></a>
+                                    <a style="background:rgba(8,124,205,1) !important; color: rgba(255,255,255,.8); font-size:8px;padding:1.5px;" data-role="button" data-inline="true" data-rel="dialog" id="btnDireccion">Dirección ></a>
                                 </td>    
                             </tr>
                             <tr id="paqueteriaTr" style="display:none;">
                                 <th>Paqueterías:</th>
                                 <td id="tdPaqueteria">
                                     <select data-mini="true" name="paqueteria" id="paqueteria">
-                                        <option value="1">Estafeta</option>
                                     </select>
                                 </td>    
                             </tr>
@@ -150,8 +139,6 @@
                                 <th>Método de Pago:</th>
                                 <td id="tdMetodoPago">
                                     <select data-mini="true" name="metodoPago" id="metodoPago">
-                                        <option value="1">Depósito</option>
-                                        <option value="2">Multipagos Bancomer</option>
                                     </select>
                                 </td>    
                             </tr>
@@ -185,69 +172,30 @@
         <nav id="menu"></nav>
     </header>
     <section id="mascara"></section>
-    
-    <!--Inicia cuadro de dialogo para direcciones-->
-    <div data-role="page" data-theme="a" id="direccion">
-
-        <!--Encabezado del cuadro de dialogo-->
-        <div data-role="header" data-theme="a">
-            <h1>Dirección</h1>
-        </div><!--Termina Encabezado-->
-        
-        <!--Inicia contenido-->
-        <div data-role="content" data-theme="a">
-            <div id="contenidoDireccion">
-                <table>
-                    <tbody>
-                        <tr>
-                            <th colspan="2" style="text-align:center">Aguascalientes</th>
-                        </tr>
-                        <tr>
-                            <th>Calle y Núm:</th>
-                            <td>Av Lópezx Mateos Oriente No.445 y 447 Esq. Jose</td>
-                        </tr>
-                        <tr>
-                            <th>Colonia:</th>
-                            <td>El encino</td>
-                        </tr>
-                        <tr>
-                            <th>Ciudad:</th>
-                            <td>Aguascalientes</td>
-                        </tr>
-                        <tr>
-                            <th>Estado:</th>
-                            <td>AGS</td>
-                        </tr>
-                        <tr>
-                            <th>CP:</th>
-                            <td>20240</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2">
-                                <a href="#inscripciones" data-rel="back" data-role="button">Aceptar</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--Termina Contenido-->
-
-    </div><!--Termina Cuadro de dialogo-->
 
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/classMenu.js"></script>
-    <script type="text/javascript" src="js/suscriptores.js"></script>
+    <!--<script type="text/javascript" src="js/suscriptores.js"></script>-->
     <script type="text/javascript" src="js/menu.js"></script>
     <script type="text/javascript" src="js/validaciones.js"></script>
     
     <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
     <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/connect.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/combosSuscriptores.js"></script>
     <script type="text/javascript"> 
             //El registro al servicio de google lo hacemos automáticamente
             app.initialize();            
-            menu.cargarMenu();
+            menu.cargarMenu(); 
+                    
+            //Carga combo días
+            fillDay();
+            //Carga combo meses
+            fillMonth();
+            //Carga combo años
+            fillYear();
         
     </script>
     </body>
