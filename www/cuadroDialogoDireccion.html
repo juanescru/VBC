@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=no">
+
+        <link rel="stylesheet" href="css/themes/vbc-theme.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/styleSuscriptores.css" />
+        <link rel="stylesheet" type="text/css" href="css/styleMenu.css">
+        <link rel="stylesheet" type="text/css" href="fonts/fonts.css">               
+
+        <title>Inscripciones</title>
+
+    </head>
+    <body>
+
+    <!--Inicia cuadro de dialogo para direcciones-->
+    <div data-role="page" data-theme="a" id="direccion">
+
+        <!--Encabezado del cuadro de dialogo-->
+        <div data-role="header" data-theme="a">
+            <h1>Dirección</h1>
+        </div><!--Termina Encabezado-->
+        
+        <!--Inicia contenido-->
+        <div data-role="content" data-theme="a">
+            <div id="contenidoDireccion">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th colspan="2" style="text-align:center"></th>
+                        </tr>
+                        <tr>
+                            <th>Calle y Núm:</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Colonia:</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Ciudad:</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Estado:</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>CP:</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <a href="#inscripciones" data-rel="back" data-role="button">Aceptar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!--Termina Contenido-->
+
+    </div><!--Termina Cuadro de dialogo-->
+
+    <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/classMenu.js"></script>
+    <!--<script type="text/javascript" src="js/suscriptores.js"></script>-->
+    <script type="text/javascript" src="js/menu.js"></script>
+    <script type="text/javascript" src="js/validaciones.js"></script>
+    
+    <script type="text/javascript" charset="utf-8" src="js/logout.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/notificaciones.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/connect.js"></script>
+    <script type="text/javascript"> 
+            //El registro al servicio de google lo hacemos automáticamente
+            app.initialize();            
+            menu.cargarMenu();
+            /*Devuelve conjunto de datos y carga CUADRO DE DIÁLOGO con los detalles del Centro Autorizado que ha sido seleccionado*/
+           var centroAutorizadoVal = localStorage.getItem("centroAutorizadoValLocal");
+            queryData('USP_VBC_GET_WAREHOUSE_DETAIL', ['integer', centroAutorizadoVal], fillWarehouseDetails);
+            function fillWarehouseDetails(dataSet){
+                var rec = dataSet[0];         
+                for(var idx = 0; idx < dataSet.length; idx++){
+                    rec = dataSet[idx];
+                    
+                    $('tbody tr:nth-child(1) th').append(rec['city']);
+                    $('tbody tr:nth-child(2) td').append(rec['address1']);
+                    $('tbody tr:nth-child(3) td').append(rec['address2']);
+                    $('tbody tr:nth-child(4) td').append(rec['city']);
+                    $('tbody tr:nth-child(5) td').append(rec['stateCode']);
+                    $('tbody tr:nth-child(6) td').append(rec['postalCode']);
+                }
+                localStorage.removeItem("centroAutorizadoValLocal");
+            
+            }
+            
+        
+    </script>
+    </body>
+</html>
